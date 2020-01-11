@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require("./models");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8500;
 
 
 
@@ -15,8 +15,8 @@ app.use("/api/user", apiRoutes);
 const recipeRoutes = require("./routes/api/recipeRoutes");
 app.use("/api/recipe", recipeRoutes);
 
-// const clientRoutes = require("./controllers/client/html-routes");
-// app.use("/", clientRoutes);
+const clientRoutes = require("./routes/client/htmlRoutes");
+app.use("/", clientRoutes);
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
