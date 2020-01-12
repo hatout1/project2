@@ -14,12 +14,12 @@ module.exports = (sequlize, DataTypes) => {
                 len: [3, 50]
             }
         },
-        ingredian: {
+        ingredients: {
             type: DataTypes.TEXT,
             allowNull: false,
             len: [1]
         },
-        procedure: {
+        Preparation: {
             type: DataTypes.TEXT,
             allowNull: false,
             validate: {
