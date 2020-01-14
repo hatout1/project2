@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const db = require("../../models");
 
-router.get("/:id", (req, res) => {
+router.get("/", (req, res) => {
     db.Recipe.findAll({
-        where: { recipeId: req.params.id },
-        include: [db.User]
+        // where: { recipeId: req.params.id },
+        // include: [db.Users]
     }).then(recipes => {
         res.json(recipes);
     });

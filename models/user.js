@@ -1,7 +1,7 @@
 module.exports = (sequlize, DataTypes) => {
-    const User = sequlize.define("User", {
-        userID: {
-            type: DataTypes.INTEGER
+    const Users = sequlize.define("Users", {
+        userId: {
+            type: DataTypes.STRING
         },
         name: {
             type: DataTypes.STRING,
@@ -14,12 +14,14 @@ module.exports = (sequlize, DataTypes) => {
             // }
         },
         zipcode: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1, 5]
             }
         }
     })
-    return User;
+
+
+    return Users;
 }

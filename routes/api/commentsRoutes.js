@@ -9,11 +9,11 @@ router.get("/:id", (req, res) => {
             recipeId: req.params.recipeId
         },
         include: [db.User] || [db.Recipe]
+        // include: [db.users]
+    }).then(comments => {
+        res.json(comments)
     })
-}).then(comments => {
-    res.json(comments)
 });
-
 
 router.post("/", (req, res) => {
     db.Comment.create({

@@ -3,15 +3,15 @@ const router = express.Router();
 const db = require("../../models");
 
 router.get("/", (req, res) => {
-    db.User.findAll({
-        // include: [db.Post]
+    db.Users.findAll({
+        // include: [db.Users]
     }).then(users => {
         res.json(users);
     });
 });
 
 router.post("/", (req, res) => {
-    db.User.create({
+    db.Users.create({
         userId: req.body.userId,
         name: req.body.name,
         diet: req.body.diet,

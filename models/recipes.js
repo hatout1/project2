@@ -19,13 +19,23 @@ module.exports = (sequlize, DataTypes) => {
             allowNull: false,
             len: [1]
         },
-        Preparation: {
+        preparation: {
             type: DataTypes.TEXT,
             allowNull: false,
             validate: {
                 len: [1, 1500]
             }
+        },
+        userId: {
+            type: DataTypes.STRING
         }
     })
+    // Recipe.associate = models => {
+    //     Recipe.belongsTo(models.Users, {
+    //         foreignKey: {
+    //             // allowNull: false
+    //         }
+    //     });
+    // };
     return Recipe;
 }
