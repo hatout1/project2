@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url: 'https://api.edamam.com/search?q=chicken&app_id=' + ApplicationId + '&app_key=' + api + '&from=0&to=3&calories=591-722&health=alcohol-free',
+        url: 'https://api.edamam.com/search?q=chicken&app_id=' + ApplicationId + '&app_key=' + api + '&from=10&to=13&calories=591-722&health=alcohol-free',
     }).then(res => {
         let ingredients;
         let recipeList = res.hits;
@@ -35,7 +35,7 @@ $(document).ready(function () {
                             </h2>
                         </div>
                         <div class="imagePlace">
-                            <img src="${res.hits[r].recipe.image}" alt="" style="display: block; height: 300px; width: 500px;">
+                            <img src="${res.hits[r].recipe.image}" alt="" style="display: block; height: 500px; width: 80%;">
                             <button id="addFavoritebtn">Like it</button>
                         <div class="Ingred">
                         </div >
@@ -65,5 +65,30 @@ function reply_click(clicked_id) {
 }
 
 
+// geo locaion
+
+if ('geolocation' in navigator) {
+    console.log('geolocation available');
+    navigator.geolocation.getCurrentPosition(position => {
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        console.log(lat, lon);
+    });
+} else {
+    console.log('geolocation not available');
+}
 
 
+
+
+// const data = { lat, lon, weather, air };
+// const options = {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(data)
+// };
+// const db_response = await fetch('/api', options);
+// const db_json = await db_response.json();
+// console.log(db_json);

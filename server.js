@@ -1,14 +1,12 @@
 const express = require("express");
 const app = express();
 const db = require("./models");
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8500;
 
 require('dotenv').config();
 
 const firebase = require('firebase');
-
-console.log(process.env.apiKey)
-
 const firebaseConfig = {
     apiKey: process.env.apiKey,
     authDomain: "project2-e02f7.firebaseapp.com",
@@ -26,6 +24,7 @@ const auth = firebase.auth();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./public"));
+// app.set('public', __dirname + '/public');
 
 const apiRoutes = require("./routes/api/apiRoutes");
 app.use("/api/user", apiRoutes);
@@ -41,12 +40,54 @@ app.use("/api/comment", commentRoutes)
 let email = "";
 let password = "";
 
-app.post('/login', (req, res) => {
+// sign up new users
+app.post('/SignUp', (req, res) => {
+    email = req.body.email;
+    password = req.body.password
+    auth.createUserWithEmailAndPassword(email, password)
+    res.send(auth)
+})
+
+// sign in existing user
+app.post('/home', (req, res) => {
     email = req.body.email;
     password = req.body.password
     auth.signInWithEmailAndPassword(email, password)
     res.send(auth)
+    statusLog()
 })
+
+// sign out singed in user
+app.post('/signout', (req, res) => {
+    auth.signOut()
+    res.send(auth)
+    statusLog()
+})
+
+
+app.get('/status', (req, res) => {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            // res.send(user)
+            res.send(user)
+            console.log('signed in')
+        } else {
+            console.log("No user is signed in.")
+            // res.send(false)
+        }
+    })
+})
+
+let statusLog = auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log('signed in');
+        console.log(user.email)
+        console.log(user.uid)
+        app.set('public', __dirname + '/public');
+    } else {
+        console.log('signed out!!!!!!!!');
+    }
+});
 
 
 db.sequelize.sync().then(() => {
