@@ -1,7 +1,8 @@
 module.exports = (sequlize, DataTypes) => {
     const Users = sequlize.define("Users", {
         userId: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            primaryKey: true
         },
         name: {
             type: DataTypes.STRING,

@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
     const Comment = sequelize.define("Comment", {
-        // date: {
-        //     type: DataTypes.STRING,
-        //     // allowNull: false,
-        //     // validate: {
-        //     //     len: [1, 140]
-        //     // }
-        // },
+        date: {
+            type: DataTypes.STRING,
+            // allowNull: false,
+            // validate: {
+            //     len: [1, 140]
+            // }
+        },
         body: {
             type: DataTypes.TEXT,
             allowNull: false,
@@ -16,9 +16,10 @@ module.exports = (sequelize, DataTypes) => {
 
     Comment.associate = models => {
         Comment.belongsTo(models.Users, {
-            foreignKey: {
-                // allowNull: false
-            }
+            foreignKey: 'UserId'
+            // foreignKey: {
+            //     // allowNull: false
+            // }
         });
         Comment.belongsTo(models.Recipe, {
             foreignKey:
