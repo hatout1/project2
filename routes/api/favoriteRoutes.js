@@ -4,7 +4,7 @@ const db = require("../../models");
 
 router.get("/", (req, res) => {
     console.log(req.query)
-    db.Comment.findAll({
+    db.Favorite.findAll({
         where: {
             // id: req.params.id,
             UserId: req.query.userId,
@@ -13,20 +13,20 @@ router.get("/", (req, res) => {
         include: [{ model: db.Users }, db.Recipe]
         // include: [db.User] || [db.Recipe]
         // include: [db.users]
-    }).then(comments => {
-        res.json(comments)
+    }).then(Favorites => {
+        res.json(Favorites)
     })
 });
 
 router.post("/", (req, res) => {
     console.log(req.body)
-    db.Comment.create({
+    db.Favorite.create({
         UserId: req.body.userId,
         RecipeId: req.body.recipeId,
         date: req.body.date,
         body: req.body.body
-    }).then(comments => {
-        res.json(comments)
+    }).then(Favorites => {
+        res.json(Favorites)
     });
 });
 

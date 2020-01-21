@@ -36,11 +36,11 @@ $(document).ready(function () {
                         </div>
                         <div class="imagePlace">
                             <img src="${res.hits[r].recipe.image}" alt="" style="display: block; height: 500px; width: 80%;">
-                            <button id="addFavoritebtn">Like it</button>
-                        <div class="Ingred">
-                        </div >
-                        <div id="link" onclick="window.location.href ='${res.hits[r].recipe.url}'">More Info</div>
-                    </div>`
+                            <button id="addFavoritebtn">Like it</button>`
+                    //     <div class="Ingred">
+                    // </div >`
+                    // <div id="link" onclick="window.location.href ='${res.hits[r].recipe.url}'">More Info</div>
+                    // </div>`
                 );
                 IngredDisplay();
             }
@@ -79,16 +79,3 @@ if ('geolocation' in navigator) {
 }
 
 
-
-
-// const data = { lat, lon, weather, air };
-// const options = {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(data)
-// };
-// const db_response = await fetch('/api', options);
-// const db_json = await db_response.json();
-// console.log(db_json);

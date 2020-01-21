@@ -20,6 +20,14 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+const database = firebase.database();
+// const dbase = database;
+const admin = require('firebase-admin');
+const serviceAccount = require('./project2-e02f7-firebase-adminsdk-z4pbd-b9a5d004e1.json')
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+})
+const Fdbase = admin.firestore();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -43,9 +51,19 @@ let password = "";
 // sign up new users
 app.post('/SignUp', (req, res) => {
     email = req.body.email;
-    password = req.body.password
-    auth.createUserWithEmailAndPassword(email, password)
-    res.send(auth)
+    password = req.body.password;
+    username = req.body.username;
+    diet = req.body.diet;
+    zipcode = req.body.zipcode;
+    auth.createUserWithEmailAndPassword(email, password).then(cred => {
+        return Fdbase.collection('users').doc(cred.user.uid).set({
+            username: username,
+            zipcode: zipcode,
+            diet: diet
+        });
+    }).then((req, res) => {
+        // res.send();
+    });
 })
 
 // sign in existing user
@@ -68,8 +86,8 @@ app.post('/signout', (req, res) => {
 app.get('/status', (req, res) => {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-            // res.send(user)
             res.send(user)
+            // res.send(true)
             console.log('signed in')
         } else {
             console.log("No user is signed in.")
