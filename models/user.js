@@ -5,9 +5,9 @@ module.exports = (sequlize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true
         },
-        // userId: {
-        //     type: DataTypes.st,
-        // },
+        userId: {
+            type: DataTypes.TEXT,
+        },
         email: {
             type: DataTypes.TEXT,
         },

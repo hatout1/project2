@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Comment.associate = models => {
         Comment.belongsTo(models.Users, {
-            foreignKey: 'UserId'
+            foreignKey: 'userId'
             // foreignKey: {
             //     // allowNull: false
             // }

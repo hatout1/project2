@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../../models");
+var moment = require('moment');
+moment().format();
+let currentTime = moment().format('MMMM Do YYYY, h:mm:ss a')
 
 router.get("/", (req, res) => {
     console.log(req.query)
@@ -21,9 +24,9 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
     console.log(req.body)
     db.Comment.create({
-        UserId: req.body.userId,
+        userId: req.body.userId,
         RecipeId: req.body.recipeId,
-        date: req.body.date,
+        date: currentTime,
         body: req.body.body
     }).then(comments => {
         res.json(comments)

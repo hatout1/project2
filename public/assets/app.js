@@ -1,7 +1,4 @@
-let userIdFire = ''
-
 $(document).ready(function () {
-    let userstatusUpdate;
     let data = '';
     $.ajax({
         method: 'GET',
@@ -10,21 +7,19 @@ $(document).ready(function () {
     }).then(res => {
         if (res) {
             console.log(res)
-            userIdFire = res.uid
-            userstatusUpdate = true;
+            sessionStorage.setItem("signedInUser", res.uid)
+
             $('#signUpModal').modal('hide');
             $("#signInBtn").text("Logout");
             $('#signInBtn').attr('data-target', '');
             $('#signInBtn').attr('id', 'logout');
             $('#signUpBtn').hide();
-            newSpaceForIngrd()
+            // newSpaceForIngrd()
         } else {
             console.log("Sorrrrrrryyyyyyyyyyyyyy")
             userstatusUpdate = false;
         }
     });
-
-
 });
 
 const email = '';
@@ -39,7 +34,6 @@ $(document).on('click', '#signUpNewBtn', (event) => {
     const diet = $('#validationDiet').val();
     var zipcode = $('#validationZipcode').val();
 
-    // const signupForm = document.querySelector('#signup-form')
     const data = { email, password, username, diet, zipcode };
 
     console.log(data)
@@ -49,29 +43,15 @@ $(document).on('click', '#signUpNewBtn', (event) => {
         url: "/SignUp",
         data: data
     }).then(res => {
-        console.log(res);
-        res.json(user)
 
     });
-    var zipcode = userIdFire;
-    const data2 = { email, password, username, diet, zipcode }
-    console.log(userIdFire)
-    $.ajax({
-        method: 'POST',
-        url: "/api/user",
-        data: data2,
-    }).then(result => {
-        console.log(result)
-        $('#signUpModal').modal('hide');
-        $("#signInBtn").text("Logout");
-        $('#signInBtn').attr('data-target', '');
-        $('#signInBtn').attr('id', 'logout');
-        $('#signUpBtn').hide();
-    })
-
-
-
+    $('#signUpModal').modal('hide');
+    $("#signInBtn").text("Logout");
+    $('#signInBtn').attr('data-target', '');
+    $('#signInBtn').attr('id', 'logout');
+    $('#signUpBtn').hide();
 })
+
 
 
 // sign in function goes here 
@@ -122,39 +102,77 @@ let newSpaceForIngrd = () => {
 
     $('.addNewIngrdientPlace').on('click', (event) => {
         event.preventDefault()
-        $('.newIngrediantSpan').append(` <div class="form-row" id ="igre${score++}"><i id="icon${icon++}">*</i>
-<input type="text" class="form-control col-md-1" id="exampleInputPassword1" placeholder="Qty">
-<input type="text" class="form-control col-md-2" id="exampleInputPassword1" placeholder="Measure">
-<input type="text" class="form-control col-md-3" id="exampleInputPassword1"
-    placeholder="Ingredient">
-<input type="text" class="form-control col-md-6" id="exampleInputPassword1" placeholder="Note">
+        $('.newIngrediantSpan').append(` <div class="form-row newIngredients" id ="igre${score++}"><i id="icon${icon++}">*</i>    
+<input type="text" class="form-control col-md-6 formInputNote" id="formInputNote" placeholder="Enter the ingredient ">
 </div>`)
     })
 }
 
+newSpaceForIngrd();
 
-// Create Recipe 
-const recipedata = {
-    title =
-    majorIngr =
-    ingredients = {
-        ingredient1= ,
-        ingredient2 =,
-        ingredient3 =  
-    };
-    preparation =
-    userId =
-    // recipeimage =
-}
-$.ajax({
-    method: 'POST',
-    url: "/api/recipe",
-    data: recipedata,
-}).then(result => {
-    console.log(result)
+
+// Add new recipe function
+
+$(document).on('click', '#addNewRecipeBtn', (ev) => {
+    ev.preventDefault();
+    console.log('Hello')
+    const recipeTitle = $('#recipeTitleInput').val()
+    const recipeDiscreption = $('#recipeDiscreptionInput').val()
+    const recipeIngredients = [];
+    $(".newIngredients").each(function () {
+        const ingredient = $(this).find('.formInputNote').val()
+        recipeIngredients.push(ingredient);
+    })
+
+    const allrecipeIngredients = recipeIngredients.join('&').toString()
+    console.log(allrecipeIngredients)
+
+    const recipePreparation = $('#recipePreparation').val()
+    const recipePhoto = $('#recipePhoto').val()
+
+    let data = {
+        title: recipeTitle,
+        majorIngr: recipeDiscreption,
+        ingredients: allrecipeIngredients,
+        preparation: recipePreparation,
+        userId: sessionStorage.getItem("signedInUser")
+    }
+    // console.log(data)
+    $.ajax({
+        method: 'POST',
+        url: "/api/recipe",
+        data: data,
+    }).then(result => {
+        console.log(result)
+    })
 })
 
-// post all recipes
+
+// ***************************************
+// Create Recipe 
+// const recipedata = {
+//     title =
+//     majorIngr =
+//     ingredients = {
+//         ingredient1= ,
+//         ingredient2 =,
+//         ingredient3 =  
+//     };
+//     preparation =
+//     userId =
+//     // recipeimage =
+// }
+
+// *************************************
+// $.ajax({
+//     method: 'POST',
+//     url: "/api/recipe",
+//     data: recipedata,
+// }).then(result => {
+//     console.log(result)
+// })
+
+// // post all recipes
 
 $.ajax({
     method: 'GET',
@@ -164,62 +182,59 @@ $.ajax({
 
 });
 
-
-// Add Comments 
-const date =;
-const body =;
-const Userid =;
-const recipeId = ;
-
-const commentData = {
-    date:,
-    body:,
-    Userid:,
-    recipeId:
-}
-
-$.ajax({
-    method: 'POST',
-    url: '/api/comment',
-    data: commentData
-}).then(res => {
-
+// add comment function
+$(document).on('click', '#addNewCommentBtn', (comm) => {
+    comm.preventDefault();
+    // let currentTime = moment().format('MMMM Do YYYY, h:mm:ss a')
+    const commentData = {
+        body: $('#commentEntryInpuId').val(),
+        userId: sessionStorage.getItem("signedInUser"),
+        recipeId: 1
+    }
+    // // ********************************
+    $.ajax({
+        method: 'POST',
+        url: '/api/comment',
+        data: commentData
+    }).then(res => {
+        res.send()
+    })
 })
+// // Get comments for each recipe
 
-// Get comments for each recipe 
-$.ajax({
-    method: 'GET',
-    url: '',
-}).then(res => {
-    res.json()
-})
+// $.ajax({
+//     method: 'GET',
+//     url: '',
+// }).then(res => {
+//     res.json()
+// })
 
-// like a recipe 
+// // like a recipe 
+// // ***********************
+// // const userId = ;
+// // const recipeId = ;
 
-const userId = ;
-const recipeId = ;
-
-const favoriteData = {
-    userId: ,
-    recipeId:
-}
-
-$.ajax({
-    method: 'POST',
-    url: '',
-    data: favoriteData
-}).then(res => {
+// // const favoriteData = {
+// //     userId: ,
+// //     recipeId:
+// // }
+// // **************************
+// $.ajax({
+//     method: 'POST',
+//     url: '',
+//     data: favoriteData
+// }).then(res => {
 
 
-})
+// })
 
-// get liked recipes 
+// // get liked recipes 
 
-$.ajax({
-    method: 'GET',
-    url: '',
-}).then(res => {
+// $.ajax({
+//     method: 'GET',
+//     url: '',
+// }).then(res => {
 
-    res.json()
+//     res.json()
 
-})
+// })

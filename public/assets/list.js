@@ -20,32 +20,36 @@ $(document).ready(function () {
 
         let recipesDisplay = () => {
             for (r = 0; r < recipeList.length; r++) {
+                $('#apiResulteholder').append(`
+                <div cLass="eachApiRecipe" id="recipeData${r}"style="flex:1;">
+                    <div class="RecipeTitle">
+                        <p>
+                            ${res.hits[r].recipe.label}
+                        </p>
+                    </div>
+                    <div class="imagePlace">
+                        <img src="${res.hits[r].recipe.image}" alt="" style="flex:1">
+                        </div>
+                        <button id="addFavoritebtn">Like it</button>
+                    <div class="Ingred" id='Ingred${r}'>
+                </div >
+                <div id="link" onclick="window.location.href ='${res.hits[r].recipe.url}'">More Info</div>
+                </div>`
+                );
                 let IngredDisplay = function () {
                     // ingredients = []
                     for (let i = 0; i < res.hits[r].recipe.ingredientLines.length; i++) {
-                        $('.Ingred').append(
+                        $(`#Ingred${r}`).append(
                             `<ol class="ingradientNumberBtn" id="ingradientNumber${i}" onClick="reply_click(this.id)"><button class="ingradientNumberBtn" id="ingradientNumberBtn${[i]}"> + </button>     ${res.hits[r].recipe.ingredientLines[i]}</ol>`)
                     }
                 }
-                $('#apiResulteholder').append(`
-                    <div id="eachApiRecipe">
-                        <div class="RecipeTitle">
-                            <h2>
-                                ${res.hits[r].recipe.label}
-                            </h2>
-                        </div>
-                        <div class="imagePlace">
-                            <img src="${res.hits[r].recipe.image}" alt="" style="display: block; height: 500px; width: 80%;">
-                            <button id="addFavoritebtn">Like it</button>`
-                    //     <div class="Ingred">
-                    // </div >`
-                    // <div id="link" onclick="window.location.href ='${res.hits[r].recipe.url}'">More Info</div>
-                    // </div>`
-                );
-                IngredDisplay();
+
+                IngredDisplay()
             }
+
         }
         recipesDisplay();
+
     })
 });
 

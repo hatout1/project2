@@ -1,0 +1,76 @@
+.RecipeTitle{
+    flex:1;
+    height: 100px;
+    text-align: left;
+    vertical-align: middle;
+    width: 100%;
+/* background-color: aqua; */
+}
+.RecipeTitle> p {
+    vertical-align: middle;
+    position: absolute;
+    margin-top: 2%;
+}
+
+#recipesEntryForm{
+    display: block;
+width: 80%;
+margin-left: 10%;
+margin-right: 10%;
+
+}
+/* #recipeTitleForm{
+    flex:1;
+}
+
+#recipeTitleDisc{
+flex: 1;
+}*/
+#recipeTitleinput{
+    display: flex;
+}
+
+#formInputQty{
+    flex:1;
+    margin-left: 1%;
+}
+
+#formInputMeasure{
+    flex: 1;
+    margin-left: 1%;
+}
+#formInputIngredient{
+    flex: 2;
+    margin-left: 1%;
+}
+#formInputNote{
+    flex: 3;
+    margin-left: 1%;
+}
+.form-row{
+    margin-bottom: 0.5%;
+}
+
+.planning-Calendar-Col {
+    flex:1;
+    border-color: rgb(0, 51, 128);
+    border-style: double;
+    border-radius: 5%;
+     min-height: 300px;
+}
+#planningTable{
+    max-width: 80%;
+    margin-left: 10%;
+    text-align: center;
+    
+}
+#calendarTitle{
+    height: 60px;
+    text-align: center;
+    background-color: rgba(90, 93, 95, 0.521);
+}
+
+#thData{
+padding-top: 80px;
+}
+

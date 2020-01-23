@@ -3,6 +3,8 @@ const app = express();
 const db = require("./models");
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8500;
+var moment = require('moment');
+moment().format();
 
 require('dotenv').config();
 
@@ -56,14 +58,25 @@ app.post('/SignUp', (req, res) => {
     diet = req.body.diet;
     zipcode = req.body.zipcode;
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
-        return Fdbase.collection('users').doc(cred.user.uid).set({
-            username: username,
-            zipcode: zipcode,
-            diet: diet
-        });
-    }).then((req, res) => {
-        // res.send();
-    });
+        Fdbase.collection('users').doc(cred.user.uid).set({
+            username,
+            diet,
+            email,
+            password,
+            zipcode
+        }).then(() => {
+            db.Users.create({
+                userId: cred.user.uid,
+                username,
+                diet,
+                email,
+                password,
+                zipcode
+            }).then(result => {
+                res.json(result);
+            });
+        })
+    })
 })
 
 // sign in existing user

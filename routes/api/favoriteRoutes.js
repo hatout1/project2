@@ -24,7 +24,6 @@ router.post("/", (req, res) => {
         UserId: req.body.userId,
         RecipeId: req.body.recipeId,
         date: req.body.date,
-        body: req.body.body
     }).then(Favorites => {
         res.json(Favorites)
     });
