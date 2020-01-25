@@ -1,12 +1,8 @@
 module.exports = (sequlize, DataTypes) => {
     const Users = sequlize.define("Users", {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
-        userId: {
-            type: DataTypes.TEXT,
+        UserId: {
+            type: DataTypes.STRING,
+            primaryKey: true,
         },
         email: {
             type: DataTypes.TEXT,
@@ -19,10 +15,6 @@ module.exports = (sequlize, DataTypes) => {
         },
         diet: {
             type: DataTypes.STRING,
-            // allowNull: false,
-            // validate: {
-            //     len: [3, 50]
-            // }
         },
         adress: {
             type: DataTypes.STRING,
@@ -35,15 +27,30 @@ module.exports = (sequlize, DataTypes) => {
         },
         zipcode: {
             type: DataTypes.STRING,
-            // allowNull: false,
-            // validate: {
-            //     len: [1, 5]
-            // }
         },
         country: {
             type: DataTypes.STRING,
         }
     })
+
+    Users.associate = models => {
+        Users.hasMany(models.Comments, {
+            foreignKey: 'UserId',
+            onDelete: "cascade"
+        });
+        Users.hasMany(models.Recipe, {
+            foreignKey: 'UserId'
+            // onDelete: "cascade"
+        });
+        Users.hasMany(models.ShoppingList, {
+            foreignKey: 'UserId',
+            onDelete: "cascade"
+        });
+        Users.hasMany(models.Favorite, {
+            foreignKey: 'UserId',
+            onDelete: "cascade"
+        });
+    };
 
 
     return Users;

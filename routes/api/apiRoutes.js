@@ -12,7 +12,7 @@ router.get("/all", (req, res) => {
 
 router.post("/", (req, res) => {
     db.Users.create({
-        userId: req.body.userId,
+        UserId: req.body.UserId,
         username: req.body.name,
         diet: req.body.diet,
         email: req.body.email,

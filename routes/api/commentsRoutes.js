@@ -7,10 +7,10 @@ let currentTime = moment().format('MMMM Do YYYY, h:mm:ss a')
 
 router.get("/", (req, res) => {
     console.log(req.query)
-    db.Comment.findAll({
+    db.Comments.findAll({
         where: {
             // id: req.params.id,
-            UserId: req.query.userId,
+            UserId: req.query.UserId,
             RecipeId: req.query.recipeId
         },
         include: [{ model: db.Users }, db.Recipe]
@@ -22,10 +22,11 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+    console.log(currentTime)
     console.log(req.body)
-    db.Comment.create({
-        userId: req.body.userId,
-        RecipeId: req.body.recipeId,
+    db.Comments.create({
+        UserId: req.body.UserId,
+        recipeId: req.body.recipeId,
         date: currentTime,
         body: req.body.body
     }).then(comments => {

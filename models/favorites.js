@@ -1,32 +1,30 @@
 module.exports = (sequelize, DataTypes) => {
     const Favorite = sequelize.define("Favorite", {
-        date: {
+        title: {
             type: DataTypes.STRING,
-            // allowNull: false,
-            // validate: {
-            //     len: [1, 140]
-            // }
+            allowNull: false,
         },
-        body: {
+        ingredients: {
             type: DataTypes.TEXT,
             allowNull: false,
             len: [1]
-        }
+        },
+        preparation: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            validate: {
+                len: [1, 1500]
+            }
+        },
     });
 
     Favorite.associate = models => {
         Favorite.belongsTo(models.Users, {
-            foreignKey: 'UserId'
-            // foreignKey: {
-            //     // allowNull: false
-            // }
+            foreignKey: "UserId"
         });
         Favorite.belongsTo(models.Recipe, {
-            foreignKey:
-            {
-                // allowNull: false
-            }
-        })
+            foreignKey: "recipeId"
+        });
     };
 
     return Favorite;

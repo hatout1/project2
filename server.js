@@ -46,7 +46,14 @@ const clientRoutes = require("./routes/client/htmlRoutes");
 app.use("/", clientRoutes);
 
 const commentRoutes = require("./routes/api/commentsRoutes");
-app.use("/api/comment", commentRoutes)
+app.use("/api/comment", commentRoutes);
+
+const shoppingListRoutes = require("./routes/api/shoppingListRoutes");
+app.use("/api/shopping", shoppingListRoutes);
+
+const favoriteRoutes = require("./routes/api/favoriteRoutes");
+app.use("/api/favorite", favoriteRoutes);
+
 let email = "";
 let password = "";
 
@@ -66,7 +73,7 @@ app.post('/SignUp', (req, res) => {
             zipcode
         }).then(() => {
             db.Users.create({
-                userId: cred.user.uid,
+                UserId: cred.user.uid,
                 username,
                 diet,
                 email,

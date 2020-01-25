@@ -22,8 +22,8 @@ $(document).ready(function () {
     });
 });
 
-const email = '';
-const password = '';
+// const email = '';
+// const password = '';
 
 // Sign up new users
 $(document).on('click', '#signUpNewBtn', (event) => {
@@ -32,11 +32,9 @@ $(document).on('click', '#signUpNewBtn', (event) => {
     const password = $('#validationPassword').val()
     const username = $('#validationUsername').val();
     const diet = $('#validationDiet').val();
-    var zipcode = $('#validationZipcode').val();
+    const zipcode = $('#validationZipcode').val();
 
     const data = { email, password, username, diet, zipcode };
-
-    console.log(data)
 
     $.ajax({
         type: "POST",
@@ -51,8 +49,6 @@ $(document).on('click', '#signUpNewBtn', (event) => {
     $('#signInBtn').attr('id', 'logout');
     $('#signUpBtn').hide();
 })
-
-
 
 // sign in function goes here 
 $(document).on('click', "#signInSubmitBtn", (e) => {
@@ -110,7 +106,6 @@ let newSpaceForIngrd = () => {
 
 newSpaceForIngrd();
 
-
 // Add new recipe function
 
 $(document).on('click', '#addNewRecipeBtn', (ev) => {
@@ -125,7 +120,6 @@ $(document).on('click', '#addNewRecipeBtn', (ev) => {
     })
 
     const allrecipeIngredients = recipeIngredients.join('&').toString()
-    console.log(allrecipeIngredients)
 
     const recipePreparation = $('#recipePreparation').val()
     const recipePhoto = $('#recipePhoto').val()
@@ -135,9 +129,9 @@ $(document).on('click', '#addNewRecipeBtn', (ev) => {
         majorIngr: recipeDiscreption,
         ingredients: allrecipeIngredients,
         preparation: recipePreparation,
-        userId: sessionStorage.getItem("signedInUser")
+        UserId: sessionStorage.getItem("signedInUser")
     }
-    // console.log(data)
+
     $.ajax({
         method: 'POST',
         url: "/api/recipe",
@@ -146,31 +140,6 @@ $(document).on('click', '#addNewRecipeBtn', (ev) => {
         console.log(result)
     })
 })
-
-
-// ***************************************
-// Create Recipe 
-// const recipedata = {
-//     title =
-//     majorIngr =
-//     ingredients = {
-//         ingredient1= ,
-//         ingredient2 =,
-//         ingredient3 =  
-//     };
-//     preparation =
-//     userId =
-//     // recipeimage =
-// }
-
-// *************************************
-// $.ajax({
-//     method: 'POST',
-//     url: "/api/recipe",
-//     data: recipedata,
-// }).then(result => {
-//     console.log(result)
-// })
 
 // // post all recipes
 
@@ -181,6 +150,7 @@ $.ajax({
 
 
 });
+// const recipeId = 0;
 
 // add comment function
 $(document).on('click', '#addNewCommentBtn', (comm) => {
@@ -188,8 +158,8 @@ $(document).on('click', '#addNewCommentBtn', (comm) => {
     // let currentTime = moment().format('MMMM Do YYYY, h:mm:ss a')
     const commentData = {
         body: $('#commentEntryInpuId').val(),
-        userId: sessionStorage.getItem("signedInUser"),
-        recipeId: 1
+        UserId: sessionStorage.getItem("signedInUser"),
+        recipeId: '1'
     }
     // // ********************************
     $.ajax({
@@ -238,3 +208,25 @@ $(document).on('click', '#addNewCommentBtn', (comm) => {
 //     res.json()
 
 // })
+
+// Add item to shopping list database
+
+let favoriteList = [];
+
+$(document).on('click', ('.ingradientApiNumberBtn'), (ev) => {
+    ev.preventDefault();
+    const apiIngToList = $(ev.target).val();
+    console.log(apiIngToList)
+    favoriteList.push(apiIngToList)
+    console.log(favoriteList);
+    const UserId = sessionStorage.getItem("signedInUser");
+    const item = $(ev.target).val();
+    const data = { UserId: UserId, item: item }
+    $.ajax({
+        method: 'POST',
+        url: '/api/shopping',
+        data: data
+    }).then(res => {
+        res.send()
+    })
+})

@@ -1,33 +1,31 @@
 module.exports = (sequelize, DataTypes) => {
-    const Comment = sequelize.define("Comment", {
+    const Comments = sequelize.define("Comments", {
         date: {
-            type: DataTypes.STRING,
-            // allowNull: false,
-            // validate: {
-            //     len: [1, 140]
-            // }
+            type: DataTypes.STRING
         },
+        UserId: {
+            type: DataTypes.STRING
+        },
+        recipeId: {
+            type: DataTypes.INTEGER
+        },
+        // Id: {
+        //     type: DataTypes.INTEGER
+        // },
         body: {
             type: DataTypes.TEXT,
             allowNull: false,
             len: [1]
         }
     });
-
-    Comment.associate = models => {
-        Comment.belongsTo(models.Users, {
-            foreignKey: 'userId'
-            // foreignKey: {
-            //     // allowNull: false
-            // }
+    Comments.associate = models => {
+        Comments.belongsTo(models.Users, {
+            foreignKey: "UserId"
         });
-        Comment.belongsTo(models.Recipe, {
-            foreignKey:
-            {
-                // allowNull: false
-            }
-        })
+        Comments.belongsTo(models.Recipe, {
+            foreignKey: "recipeId"
+        });
     };
 
-    return Comment;
+    return Comments;
 };

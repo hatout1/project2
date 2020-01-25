@@ -4,15 +4,14 @@ $(document).ready(function () {
 
     const ApplicationId = '9a0cb148';
     const api = '7a34298f495a96286835d7025cd4748b';
+    const choice = 'salad'
+    const firstN = ''
+    const Last = firstN + 3
 
-    // https://api.edamam.com/search?q=chicken&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free
-    // https://api.edamam.com/search?q=chicken&app_id=9a0cb148&app_key=7a34298f495a96286835d7025cd4748b&from=0&to=3&calories=591-722&health=alcohol-free
-
-    console.log("Hello")
 
     $.ajax({
         type: "GET",
-        url: 'https://api.edamam.com/search?q=chicken&app_id=' + ApplicationId + '&app_key=' + api + '&from=10&to=13&calories=591-722&health=alcohol-free',
+        url: 'https://api.edamam.com/search?q=' + choice + '&app_id=' + ApplicationId + '&app_key=' + api + '&from=10&to=13&calories=591-722&health=alcohol-free',
     }).then(res => {
         let ingredients;
         let recipeList = res.hits;
@@ -37,36 +36,55 @@ $(document).ready(function () {
                 </div>`
                 );
                 let IngredDisplay = function () {
-                    // ingredients = []
                     for (let i = 0; i < res.hits[r].recipe.ingredientLines.length; i++) {
                         $(`#Ingred${r}`).append(
-                            `<ol class="ingradientNumberBtn" id="ingradientNumber${i}" onClick="reply_click(this.id)"><button class="ingradientNumberBtn" id="ingradientNumberBtn${[i]}"> + </button>     ${res.hits[r].recipe.ingredientLines[i]}</ol>`)
+                            `<ol class="ingradientApiNumberBtn" id="ingradientNumber${i}">
+                            <button class="ingradientNumberBtn" data-id="ing${[i]}" id="ingradientNumberBtn${[i]}" value="${res.hits[r].recipe.ingredientLines[i]}"> + </button>     ${res.hits[r].recipe.ingredientLines[i]}</ol>`)
                     }
                 }
-
                 IngredDisplay()
             }
-
         }
         recipesDisplay();
-
     })
 });
 
-// $(document).on('click', () => {
-//     console.log(document.querySelector("id"))
+// let favoriteList = [];
+// let values = [];
+
+// $(document).on('click', ('.ingradientApiNumberBtn'), (ev) => {
+//     ev.preventDefault();
+//     const apiIngToList = $(ev.target).val();
+//     console.log(apiIngToList)
+//     favoriteList.push(apiIngToList)
+//     console.log(favoriteList);
+//     const UserId = ;
+//     const item = $(ev.target).val();
+//     const data = { UserId, item }
+//     $.ajax({
+//         method: 'POST',
+//         url: '/api/shopping',
+//         data
+//     }).then(res => {
+//         res.send(res)
+//     })
 // })
 
-let favoriteList = [];
-let values = [];
 
-function reply_click(clicked_id) {
-    // click = clicked_id
-    favoriteList.push(clicked_id)
-    console.log(favoriteList);
-    values.push(document.getElementById(clicked_id).innerText);
-    // $('.favoriteContainer').append(`<h3>${values}</h3>`);
-}
+
+
+// onClick="reply_click(this.id)"
+
+console.log(favoriteList);
+
+
+// function reply_click(clicked_id) {
+//     // click = clicked_id
+//     favoriteList.push(clicked_id)
+//     console.log(favoriteList);
+//     // values.push(document.getElementById(clicked_id).innerText);
+//     // $('.favoriteContainer').append(`<h3>${values}</h3>`);
+// }
 
 
 // geo locaion
