@@ -4,31 +4,34 @@ const db = require("../../models");
 
 router.get("/", (req, res) => {
     console.log(req.query)
-    db.Favorite.findAll({
+    db.Planning.findAll({
         where: {
             // id: req.params.id,
-            UserId: req.query.UserId,
-            // RecipeId: req.query.recipeId
+            UserId: req.query.userId,
+            RecipeId: req.query.recipeId,
+            day: req.query.day,
+            meal: req.query.meal
         },
         include: [{ model: db.Users }, db.Recipe]
         // include: [db.User] || [db.Recipe]
         // include: [db.users]
-    }).then(Favorites => {
-        res.json(Favorites)
+    }).then(plans => {
+        res.json(plans)
     })
 });
 
 router.post("/", (req, res) => {
     console.log(req.body)
-    db.Favorite.create({
+    db.Planning.create({
+        UserId: req.body.userId,
+        RecipeId: req.body.recipeId,
         title: req.body.title,
         ingredients: req.body.ingredients,
         preparation: req.body.preparation,
-        UserId: req.body.UserId,
-        RecipeId: req.body.recipeId,
-        date: req.body.date,
-    }).then(Favorites => {
-        res.json(Favorites)
+        day: req.body.day,
+        meal: req.body.meal,
+    }).then(plan => {
+        res.json(plan)
     });
 });
 

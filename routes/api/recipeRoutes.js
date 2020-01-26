@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
         majorIngr: req.body.majorIngr,
         ingredients: req.body.ingredients,
         preparation: req.body.preparation,
-        userId: req.body.userId
+        UserId: req.body.UserId
     }).then(recipes => {
         res.json(recipes);
     });

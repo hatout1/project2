@@ -39,8 +39,8 @@ module.exports = (sequlize, DataTypes) => {
             onDelete: "cascade"
         });
         Users.hasMany(models.Recipe, {
-            foreignKey: 'UserId'
-            // onDelete: "cascade"
+            foreignKey: 'UserId',
+            onDelete: "cascade"
         });
         Users.hasMany(models.ShoppingList, {
             foreignKey: 'UserId',

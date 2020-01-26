@@ -2,13 +2,13 @@ module.exports = (sequlize, DataTypes) => {
     const Recipe = sequlize.define("Recipe", {
         Id: {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
+            // autoIncrement: true,
+            // primaryKey: true
         },
         recipeId: {
             type: DataTypes.INTEGER,
-            // autoIncrement: true,
-            // primaryKey: true
+            autoIncrement: true,
+            primaryKey: true
         },
         title: {
             type: DataTypes.STRING,
@@ -43,7 +43,8 @@ module.exports = (sequlize, DataTypes) => {
 
     Recipe.associate = models => {
         Recipe.belongsTo(models.Users, {
-            foreignKey: "UserId"
+            foreignKey: "UserId",
+            // onDelete: "cascade"
         });
     }
 

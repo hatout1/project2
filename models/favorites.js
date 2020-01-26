@@ -4,10 +4,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        ingredients: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-            len: [1]
+        UserId: {
+            type: DataTypes.STRING,
         },
         preparation: {
             type: DataTypes.TEXT,

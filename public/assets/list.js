@@ -8,7 +8,6 @@ $(document).ready(function () {
     const firstN = ''
     const Last = firstN + 3
 
-
     $.ajax({
         type: "GET",
         url: 'https://api.edamam.com/search?q=' + choice + '&app_id=' + ApplicationId + '&app_key=' + api + '&from=10&to=13&calories=591-722&health=alcohol-free',
@@ -16,20 +15,19 @@ $(document).ready(function () {
         let ingredients;
         let recipeList = res.hits;
         console.log(recipeList)
-
         let recipesDisplay = () => {
             for (r = 0; r < recipeList.length; r++) {
                 $('#apiResulteholder').append(`
                 <div cLass="eachApiRecipe" id="recipeData${r}"style="flex:1;">
-                    <div class="RecipeTitle">
+                    <div class="RecipeTitle addFavoriteToLike" id="addFavoritetitle">
                         <p>
                             ${res.hits[r].recipe.label}
                         </p>
                     </div>
-                    <div class="imagePlace">
+                    <div class="imagePlace addFavoriteToLike" id="addFavoriteimage">
                         <img src="${res.hits[r].recipe.image}" alt="" style="flex:1">
                         </div>
-                        <button id="addFavoritebtn">Like it</button>
+                        <button class="addFavoriteBtnClass addFavoriteToLike" id="addFavoriteBtn" data-title ="${res.hits[r].recipe.label}" data-image="${res.hits[r].recipe.image}" data-info="${res.hits[r].recipe.url}" style="margin-bottom:10px;">Like it</button>
                     <div class="Ingred" id='Ingred${r}'>
                 </div >
                 <div id="link" onclick="window.location.href ='${res.hits[r].recipe.url}'">More Info</div>
@@ -48,44 +46,6 @@ $(document).ready(function () {
         recipesDisplay();
     })
 });
-
-// let favoriteList = [];
-// let values = [];
-
-// $(document).on('click', ('.ingradientApiNumberBtn'), (ev) => {
-//     ev.preventDefault();
-//     const apiIngToList = $(ev.target).val();
-//     console.log(apiIngToList)
-//     favoriteList.push(apiIngToList)
-//     console.log(favoriteList);
-//     const UserId = ;
-//     const item = $(ev.target).val();
-//     const data = { UserId, item }
-//     $.ajax({
-//         method: 'POST',
-//         url: '/api/shopping',
-//         data
-//     }).then(res => {
-//         res.send(res)
-//     })
-// })
-
-
-
-
-// onClick="reply_click(this.id)"
-
-console.log(favoriteList);
-
-
-// function reply_click(clicked_id) {
-//     // click = clicked_id
-//     favoriteList.push(clicked_id)
-//     console.log(favoriteList);
-//     // values.push(document.getElementById(clicked_id).innerText);
-//     // $('.favoriteContainer').append(`<h3>${values}</h3>`);
-// }
-
 
 // geo locaion
 

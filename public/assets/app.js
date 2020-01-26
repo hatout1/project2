@@ -1,29 +1,41 @@
+let userStatus = '';
+
 $(document).ready(function () {
-    let data = '';
+
     $.ajax({
         method: 'GET',
-        date: data,
         url: '/status'
     }).then(res => {
         if (res) {
             console.log(res)
             sessionStorage.setItem("signedInUser", res.uid)
-
-            $('#signUpModal').modal('hide');
-            $("#signInBtn").text("Logout");
-            $('#signInBtn').attr('data-target', '');
-            $('#signInBtn').attr('id', 'logout');
-            $('#signUpBtn').hide();
-            // newSpaceForIngrd()
+            userStatus = sessionStorage.setItem("signedInUser", res.uid)
+            // $('#signUpModal').modal('hide');
+            // $("#signInBtn").text("Logout");
+            // $('#signInBtn').attr('data-target', '');
+            // $('#signInBtn').attr('id', 'logout');
+            // $('#signUpBtn').hide();
+            newSpaceForIngrd()
         } else {
             console.log("Sorrrrrrryyyyyyyyyyyyyy")
             userstatusUpdate = false;
         }
     });
+    allRecipes()
+    // console.log(userStatus)
+    if (userStatus === "") {
+        // sessionStorage.setItem("signedInUser", res.uid)
+        // sessionStorage.clear()
+        console.log("nothing to show")
+    } else {
+        $('#signUpModal').modal('hide');
+        $("#signInBtn").text("Logout");
+        $('#signInBtn').attr('data-target', '');
+        $('#signInBtn').attr('id', 'logout');
+        $('#signUpBtn').hide();
+    }
 });
 
-// const email = '';
-// const password = '';
 
 // Sign up new users
 $(document).on('click', '#signUpNewBtn', (event) => {
@@ -110,7 +122,7 @@ newSpaceForIngrd();
 
 $(document).on('click', '#addNewRecipeBtn', (ev) => {
     ev.preventDefault();
-    console.log('Hello')
+    // console.log('Hello')
     const recipeTitle = $('#recipeTitleInput').val()
     const recipeDiscreption = $('#recipeDiscreptionInput').val()
     const recipeIngredients = [];
@@ -120,7 +132,6 @@ $(document).on('click', '#addNewRecipeBtn', (ev) => {
     })
 
     const allrecipeIngredients = recipeIngredients.join('&').toString()
-
     const recipePreparation = $('#recipePreparation').val()
     const recipePhoto = $('#recipePhoto').val()
 
@@ -140,17 +151,60 @@ $(document).on('click', '#addNewRecipeBtn', (ev) => {
         console.log(result)
     })
 })
-
+let favoiteTitle = '';
 // // post all recipes
+let allRecipes = () => {
 
-$.ajax({
-    method: 'GET',
-    url: '',
-}).then(res => {
+    $.ajax({
+        method: 'GET',
+        url: '/api/recipe',
+    }).then(res => {
+        // console.log(res)
+        // console.log(res[0].title)
+        // console.log(res[0].ingredients)
+        // console.log(res[0].createdAt.split('T')[0])
+        let newRecipe = '<div></div>';
+        res.map((recipe, i) => {
+            console.log(recipe)
+            // console.log(i);
+            console.log(recipe.recipeId)
+            let recipeIngredients = recipe.ingredients.split('&');
+            // console.log(recipeIngredients);
+            newRecipe = newRecipe + `<div class="card mt-2">
+                     <div class="card-body pt-4">
+                         <div class="text-center">
+                         <h2 class="card-text">
+                         ${recipe.title}
+                         </h2>
+                     </div>
+                     <br>
+                     <div class="text-center">
+                         <h4>Ingredients: </h4>
+                         <p class="card-text IngredDis" id="recipe${i}">`;
 
-
-});
-// const recipeId = 0;
+            for (let r = 0; r < recipeIngredients.length; r++) {
+                console.log(recipeIngredients[r]);
+                newRecipe = newRecipe + `<ol class="ingradientApiNumberBtn" id="ingradientNumber${i}">
+                             <button class="ingradientNumberBtn" data-id="ing${[i]}" id="ingradientNumberBtn${[i]}" value="${recipeIngredients[r]}"> + </button> ${recipeIngredients[r]}</ol>`;
+            }
+            newRecipe = newRecipe + `</p>
+                     </div>
+                     <br>
+                     <div class="text-center">
+                     <h4>Preparation</h4>
+                         <p class="card-text">
+                             ${recipe.preparation}
+                         </p>
+                     </div>
+                     <div class="text-right pt-4">
+                         <button id="favoriteRecipeBtn" data-Ingred="${recipeIngredients}" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}" class="btn btn-outline-danger">Add to favorite</button>
+                     </div>
+                 </div>
+             </div>`;
+        });
+        $('.allRecipesAres').append(newRecipe);
+    })
+}
 
 // add comment function
 $(document).on('click', '#addNewCommentBtn', (comm) => {
@@ -161,7 +215,6 @@ $(document).on('click', '#addNewCommentBtn', (comm) => {
         UserId: sessionStorage.getItem("signedInUser"),
         recipeId: '1'
     }
-    // // ********************************
     $.ajax({
         method: 'POST',
         url: '/api/comment',
@@ -170,6 +223,7 @@ $(document).on('click', '#addNewCommentBtn', (comm) => {
         res.send()
     })
 })
+
 // // Get comments for each recipe
 
 // $.ajax({
@@ -179,38 +233,8 @@ $(document).on('click', '#addNewCommentBtn', (comm) => {
 //     res.json()
 // })
 
-// // like a recipe 
-// // ***********************
-// // const userId = ;
-// // const recipeId = ;
-
-// // const favoriteData = {
-// //     userId: ,
-// //     recipeId:
-// // }
-// // **************************
-// $.ajax({
-//     method: 'POST',
-//     url: '',
-//     data: favoriteData
-// }).then(res => {
-
-
-// })
-
-// // get liked recipes 
-
-// $.ajax({
-//     method: 'GET',
-//     url: '',
-// }).then(res => {
-
-//     res.json()
-
-// })
 
 // Add item to shopping list database
-
 let favoriteList = [];
 
 $(document).on('click', ('.ingradientApiNumberBtn'), (ev) => {
@@ -230,3 +254,95 @@ $(document).on('click', ('.ingradientApiNumberBtn'), (ev) => {
         res.send()
     })
 })
+
+// Display shopping item on GroceryList page
+let groceryListItem = () => {
+    const UserId = sessionStorage.getItem("signedInUser");
+    $.ajax({
+        method: "GET",
+        url: `/api/shopping/?UserId=${UserId}`
+    }).then(res => {
+        $(".items-container").empty();
+        res.map(items => {
+            $(".items-container").append(
+                `<div class="card mt-2">
+                <div class="card-body pt-4">
+                  <div class="text-center">
+                    <p class="card-text">
+                      ${items.item}
+                    </p>
+                  </div>
+                  <div class="text-right pt-4">
+                    <button id="deleteBtn" data-id="${items.id}" class="btn btn-outline-danger">Delete</button>
+                  </div>
+                </div>
+              </div>`
+            );
+        });
+    });
+}
+
+groceryListItem();
+
+// Favorite users recipes entries
+$(document).on('click', "#favoriteRecipeBtn", (event) => {
+    event.preventDefault();
+    const liked = {
+        UserId: sessionStorage.getItem("signedInUser"),
+        title: event.target.getAttribute('data-title'),
+        preparation: event.target.getAttribute('data-preparation'),
+        recipeId: event.target.getAttribute('data-Id')
+    }
+    console.log(liked)
+    $.ajax({
+        method: 'POST',
+        url: '/api/favorite',
+        data: liked
+    }).then(res => {
+        res.send()
+    })
+
+})
+
+// Favorite api recipes
+let favoriteRecipes = []
+$(document).on('click', ('#addFavoriteBtn'), (ev) => {
+    ev.preventDefault();
+    console.log('Hello')
+
+    const liked = {
+        UserId: sessionStorage.getItem("signedInUser"),
+        title: event.target.getAttribute('data-title'),
+        preparation: event.target.getAttribute('data-info'),
+        recipeId: event.target.getAttribute('data-Id')
+    }
+    console.log(liked)
+    $.ajax({
+        method: 'POST',
+        url: '/api/favorite',
+        data: liked
+    }).then(res => {
+        res.send()
+    })
+})
+
+// get liked recipes 
+let getAllFavorites = () => {
+    const UserId = sessionStorage.getItem("signedInUser");
+    $.ajax({
+        method: 'GET',
+        url: `/api/favorite/?UserId=${UserId}`,
+    }).then(res => {
+        res.map(fav => {
+            console.log(fav)
+            $('.favoriteContainer').append(`<div id="titleOfFavorite"><h2>${fav.title}</h2></div>
+           <div id="preparationOfFav">
+    <p>${fav.preparation}</p>
+            </div>`)
+        })
+        console.log(res)
+    })
+
+}
+
+getAllFavorites();

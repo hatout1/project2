@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
             // id: req.params.id,
             UserId: req.query.UserId
         },
-        include: [{ model: db.Users }]
+        // include: [{ model: db.Users }]
         // include: [db.User] || [db.Recipe]
         // include: [db.users]
     }).then(items => {
