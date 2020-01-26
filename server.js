@@ -10,7 +10,7 @@ require('dotenv').config();
 
 const firebase = require('firebase');
 const firebaseConfig = {
-    apiKey: process.env.apiKey,
+    apiKey: 'AIzaSyC6LftGH4U7pUjhGWuIaS4jrd9lDErvT4E',
     authDomain: "project2-e02f7.firebaseapp.com",
     databaseURL: "https://project2-e02f7.firebaseio.com",
     projectId: "project2-e02f7",
