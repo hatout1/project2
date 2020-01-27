@@ -92,7 +92,7 @@ app.post('/home', (req, res) => {
     password = req.body.password
     auth.signInWithEmailAndPassword(email, password)
     res.send(auth)
-    statusLog()
+    // statusLog()
 })
 
 // sign out singed in user
@@ -109,6 +109,7 @@ app.get('/status', (req, res) => {
             res.send(user)
             // res.send(true)
             console.log('signed in')
+            app.set('public', __dirname + '/public');
         } else {
             console.log("No user is signed in.")
             // res.send(false)
@@ -116,16 +117,16 @@ app.get('/status', (req, res) => {
     })
 })
 
-let statusLog = auth.onAuthStateChanged(user => {
-    if (user) {
-        console.log('signed in');
-        console.log(user.email)
-        console.log(user.uid)
-        app.set('public', __dirname + '/public');
-    } else {
-        console.log('signed out!!!!!!!!');
-    }
-});
+// let statusLog = auth.onAuthStateChanged(user => {
+//     if (user) {
+//         console.log('signed in');
+//         console.log(user.email)
+//         console.log(user.uid)
+
+//     } else {
+//         console.log('signed out!!!!!!!!');
+//     }
+// });
 
 
 db.sequelize.sync().then(() => {

@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/style.css">
-    <title>Project_2</title>
+    <link rel="import" href="./images/logo1.jpg">
+    <title>Look Up</title>
 </head>
 
 <body>
@@ -21,18 +22,22 @@
             <a href='./Planing.html' style="flex: 2; margin-right: 10px; margin-left: 10px;">Planing</a>
             <a href='./favorites.html' style=" flex: 2; margin-right: 10px; margin-left: 10px;">Favorites</a>
             <a href='./profile.html' style="flex: 2; margin-right: 10px; margin-left: 10px;">Profile</a>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signModal"
-                data-whatever="@mdo" id="signInBtn" style="flex: 1; margin-right: 10px; margin-left: 10px;">Sign
-                In</button>
-            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal"
-                data-whatever="@mdo" id="signUpBtn" style="flex: 1; margin-right: 10px; margin-left: 10px;">Sign
-                Up</button>
+            <a><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newRecipeModal"
+                    data-whatever="@mdo" id="addNewRecipeBtn">New Recipe</button></a>
+            <a><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signModal"
+                    data-whatever="@mdo" id="signInBtn">Sign In</button></a>
+            <a><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal"
+                    data-whatever="@mdo" id="signUpBtn">Sig Up</button></a>
+
         </ul>
     </nav>
 
+    <div class="logoImage">
+        <img src="./images/logo2.jpg" id="logoImage1" alt="" srcset="" style="height: 216px;">
+        <img src="./images/logo1.jpg" id="logoImage2" alt="" srcset="">
+        <img src="./images/logo3.png" id="logoImage3" alt="" srcset="" style="height: 216px;">
 
-
-
+    </div>
 
     <!-- Modal to sign in -->
     <div class="modal fade" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -134,81 +139,122 @@
         </div>
     </div>
 
-
     <!-- place to display random recipes -->
-    <div class="container" id="apiResulteholder" style="display: flex;">
+    <div class="container" id="apiResulteholder" style="display: flex; width: 100%;">
 
 
         <div class="allRecipesAresbtn"></div>
     </div>
 
     <div class="allRecipesAres" style="margin: 25px;">
-        <h1>Recipes area </h1>
-
     </div>
 
-
-
-    <!-- New recipes Input form area -->
-    <div class="recipeInputFrom">
-        <form id="recipesEntryForm">
-            <div class="form-group" id="recipeTitleForm">
-                <label for="exampleInputEmail1">Recipe Title</label>
-                <input type="text" class="form-control" id="recipeTitleInput" placeholder="">
-            </div>
-            <div class="form-group" id="recipeTitleDisc">
-                <label for="exampleInputPassword1">Discreption and major ingredients</label>
-                <input type="text" class="form-control" id="recipeDiscreptionInput">
-            </div>
-            <div class="form-group" id="recipeTitleInput">
-                <label for="exampleInputPassword1">Ingredients</label>
-                <div class="form-row newIngredients" id="igre1">
-                    <i id="icon1">*</i>
-                    <input type="text" class="form-control col-md-6 formInputNote" id="formInputNote"
-                        placeholder="Enter the ingredient ">
+    <div class="modal fade" id="newRecipeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Recipe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
                 </div>
-                <span class="newIngrediantSpan"></span>
-                <label for="addNewIngrdientPlaceLabel">
-                    Add more space for more ingredients</label>
-                <button class="addNewIngrdientPlace"> + Add</button>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Preparation</label>
-                <textarea class="form-control" id="recipePreparation" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlFile1">Attach a photo</label>
-                <input type="file" class="form-control-file" id="recipePhoto">
-            </div>
-            <button type="submit" class="btn btn-primary" id="addNewRecipeBtn">Submit</button>
-        </form>
-    </div>
+                <div class="recipeInputFrom">
+                    <form id="recipesEntryForm">
+                        <div class="form-group" id="recipeTitleForm">
+                            <label for="exampleInputEmail1">Recipe Title</label>
+                            <input type="text" class="form-control" id="recipeTitleInput" placeholder="">
+                        </div>
+                        <div class="form-group" id="recipeTitleDisc">
+                            <label for="exampleInputPassword1">Discreption and major ingredients</label>
+                            <input type="text" class="form-control" id="recipeDiscreptionInput">
+                        </div>
+                        <div class="form-group" id="recipeTitleInput">
+                            <label for="exampleInputPassword1">Ingredients</label>
+                            <div class="form-row newIngredients" id="igre1">
+                                <i id="icon1">*</i>
+                                <input type="text" class="form-control col-md-6 formInputNote" id="formInputNote"
+                                    placeholder="Enter the ingredient ">
+                            </div>
+                            <span class="newIngrediantSpan"></span>
+                            <label for="addNewIngrdientPlaceLabel">
+                                Add more space for more ingredients</label>
+                            <button class="addNewIngrdientPlace"> + Add</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Preparation</label>
+                            <textarea class="form-control" id="recipePreparation" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Attach a photo</label>
+                            <input type="file" class="form-control-file" id="recipePhoto">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <button type="submit" class="btn btn-primary" id="addNewRecipeBtn" data-toggle="modal"
+                            data-target="#newRecipeModal">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Area to add comment -->
-    <div class="commentInputFrom">
+
+
+    <div class="modal fade" id="AddCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body" id="commentForm">
+                    <form>
+                        <div class="commentInputFrom">
+                            <form id="commentEntryForm">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Comment</label>
+                                    <textarea class="form-control" id="commentEntryInpuId" rows="3"></textarea>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="exampleFormControlFile1">Attach a photo</label>
+                                    <input type="file" class="form-control-file" id="recipePhoto">
+                                </div> -->
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" id="addNewCommentBtn" data-toggle="modal"
+                                data-target="#AddCommentModal">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="commentInputFrom">
         <form id="commentEntryForm">
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Comment</label>
                 <textarea class="form-control" id="commentEntryInpuId" rows="3"></textarea>
-            </div>
-            <!-- <div class="form-group">
+            </div> -->
+    <!-- <div class="form-group">
                 <label for="exampleFormControlFile1">Attach a photo</label>
                 <input type="file" class="form-control-file" id="recipePhoto">
             </div> -->
-            <button type="submit" class="btn btn-primary" id="addNewCommentBtn">Submit</button>
+    <!-- <button type="submit" class="btn btn-primary" id="addNewCommentBtn">Submit</button>
         </form>
-    </div>
-
-
-
-
-
-
-
-
-
-
+    </div> -->
 
 
 

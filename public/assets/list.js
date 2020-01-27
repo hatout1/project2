@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url: 'https://api.edamam.com/search?q=' + choice + '&app_id=' + ApplicationId + '&app_key=' + api + '&from=10&to=13&calories=591-722&health=alcohol-free',
+        url: 'https://api.edamam.com/search?q=' + choice + '&app_id=' + ApplicationId + '&app_key=' + api + '&from=10&to=15&calories=591-722&health=alcohol-free',
     }).then(res => {
         let ingredients;
         let recipeList = res.hits;
@@ -26,17 +26,25 @@ $(document).ready(function () {
                     </div>
                     <div class="imagePlace addFavoriteToLike" id="addFavoriteimage">
                         <img src="${res.hits[r].recipe.image}" alt="" style="flex:1">
-                        </div>
+                    </div>
                         <button class="addFavoriteBtnClass addFavoriteToLike" id="addFavoriteBtn" data-title ="${res.hits[r].recipe.label}" data-image="${res.hits[r].recipe.image}" data-info="${res.hits[r].recipe.url}" style="margin-bottom:10px;">Like it</button>
-                    <div class="Ingred" id='Ingred${r}'>
-                </div >
-                <div id="link" onclick="window.location.href ='${res.hits[r].recipe.url}'">More Info</div>
+                    <div class="apiIngredientslistDisplay">
+                    <p>Click for ingredients</p>
+                    </div>
+                    <div class="panel" style="display:none;">
+                        <div class="Ingred" id='Ingred${r}'>
+                        </div >
+                        <div id="linkToMoreInfo" onclick="window.open('${res.hits[r].recipe.url}')">More Info
+                        </div>
+                    
+                    </div>
                 </div>`
                 );
                 let IngredDisplay = function () {
                     for (let i = 0; i < res.hits[r].recipe.ingredientLines.length; i++) {
                         $(`#Ingred${r}`).append(
-                            `<ol class="ingradientApiNumberBtn" id="ingradientNumber${i}">
+                            `
+                            <ol class="ingradientApiNumberBtn" id="ingradientNumber${i}">
                             <button class="ingradientNumberBtn" data-id="ing${[i]}" id="ingradientNumberBtn${[i]}" value="${res.hits[r].recipe.ingredientLines[i]}"> + </button>     ${res.hits[r].recipe.ingredientLines[i]}</ol>`)
                     }
                 }
@@ -46,18 +54,21 @@ $(document).ready(function () {
         recipesDisplay();
     })
 });
+$(document).on('click', '.apiIngredientslistDisplay', () => {
+    $(".panel").slideToggle("slow");
+})
 
 // geo locaion
 
-if ('geolocation' in navigator) {
-    console.log('geolocation available');
-    navigator.geolocation.getCurrentPosition(position => {
-        lat = position.coords.latitude;
-        lon = position.coords.longitude;
-        console.log(lat, lon);
-    });
-} else {
-    console.log('geolocation not available');
-}
+// if ('geolocation' in navigator) {
+//     console.log('geolocation available');
+//     navigator.geolocation.getCurrentPosition(position => {
+//         lat = position.coords.latitude;
+//         lon = position.coords.longitude;
+//         console.log(lat, lon);
+//     });
+// } else {
+//     console.log('geolocation not available');
+// }
 
 

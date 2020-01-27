@@ -8,11 +8,11 @@ let currentTime = moment().format('MMMM Do YYYY, h:mm:ss a')
 router.get("/", (req, res) => {
     console.log(req.query)
     db.Comments.findAll({
-        where: {
-            // id: req.params.id,
-            UserId: req.query.UserId,
-            RecipeId: req.query.recipeId
-        },
+        // where: {
+        //     // id: req.params.id,
+        //     // UserId: req.query.UserId,
+        //     RecipeId: req.query.recipeId
+        // },
         include: [{ model: db.Users }, db.Recipe]
         // include: [db.User] || [db.Recipe]
         // include: [db.users]

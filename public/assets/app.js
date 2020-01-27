@@ -1,5 +1,3 @@
-let userStatus = '';
-
 $(document).ready(function () {
 
     $.ajax({
@@ -9,7 +7,7 @@ $(document).ready(function () {
         if (res) {
             console.log(res)
             sessionStorage.setItem("signedInUser", res.uid)
-            userStatus = sessionStorage.setItem("signedInUser", res.uid)
+            const userStatus = sessionStorage.getItem("signedInUser");
             // $('#signUpModal').modal('hide');
             // $("#signInBtn").text("Logout");
             // $('#signInBtn').attr('data-target', '');
@@ -21,7 +19,9 @@ $(document).ready(function () {
             userstatusUpdate = false;
         }
     });
+
     allRecipes()
+
     // console.log(userStatus)
     if (userStatus === "") {
         // sessionStorage.setItem("signedInUser", res.uid)
@@ -33,7 +33,9 @@ $(document).ready(function () {
         $('#signInBtn').attr('data-target', '');
         $('#signInBtn').attr('id', 'logout');
         $('#signUpBtn').hide();
+
     }
+
 });
 
 
@@ -116,10 +118,7 @@ let newSpaceForIngrd = () => {
     })
 }
 
-newSpaceForIngrd();
-
 // Add new recipe function
-
 $(document).on('click', '#addNewRecipeBtn', (ev) => {
     ev.preventDefault();
     // console.log('Hello')
@@ -150,6 +149,7 @@ $(document).on('click', '#addNewRecipeBtn', (ev) => {
     }).then(result => {
         console.log(result)
     })
+    allRecipes()
 })
 let favoiteTitle = '';
 // // post all recipes
@@ -170,15 +170,16 @@ let allRecipes = () => {
             console.log(recipe.recipeId)
             let recipeIngredients = recipe.ingredients.split('&');
             // console.log(recipeIngredients);
-            newRecipe = newRecipe + `<div class="card mt-2">
-                     <div class="card-body pt-4">
-                         <div class="text-center">
-                         <h2 class="card-text">
-                         ${recipe.title}
-                         </h2>
-                     </div>
-                     <br>
-                     <div class="text-center">
+            newRecipe = newRecipe + `
+                <div class="recipeDiv">
+                     <div class="recipeCountainer">
+                         <div class="userRecipeTitle">
+                            <h2 class="card-text">
+                                ${recipe.title}
+                            </h2>
+                        </div>
+                        <br>
+                        <div class="userRecipeIngredients">
                          <h4>Ingredients: </h4>
                          <p class="card-text IngredDis" id="recipe${i}">`;
 
@@ -188,19 +189,21 @@ let allRecipes = () => {
                              <button class="ingradientNumberBtn" data-id="ing${[i]}" id="ingradientNumberBtn${[i]}" value="${recipeIngredients[r]}"> + </button> ${recipeIngredients[r]}</ol>`;
             }
             newRecipe = newRecipe + `</p>
-                     </div>
-                     <br>
-                     <div class="text-center">
-                     <h4>Preparation</h4>
-                         <p class="card-text">
+                        </div>
+                        <br>
+                    <div class="userRecipePreparation">
+                        <h4>Preparation</h4>
+                         <p id="userRecipePreparation">
                              ${recipe.preparation}
                          </p>
-                     </div>
-                     <div class="text-right pt-4">
-                         <button id="favoriteRecipeBtn" data-Ingred="${recipeIngredients}" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}" class="btn btn-outline-danger">Add to favorite</button>
-                     </div>
-                 </div>
-             </div>`;
+                        </div>
+                    </div>
+                        <div class="text-right pt-2 mb-5">
+                        <button id="addNewCommentBtn" data-Ingred="addNewCommentBtn" data-toggle="modal" data-target="#AddCommentModal"
+                        data-whatever="@mdo" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}" class="btn btn-secondary btn-lg btn-radius">Add Comment</button>
+                         <button id="favoriteRecipeBtn" data-Ingred="${recipeIngredients}" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}" class="btn btn-success btn-lg btn-radius"">Add to favorite</button>
+                        </div>
+                </div>`;
         });
         $('.allRecipesAres').append(newRecipe);
     })
@@ -266,13 +269,13 @@ let groceryListItem = () => {
         res.map(items => {
             $(".items-container").append(
                 `<div class="card mt-2">
-                <div class="card-body pt-4">
-                  <div class="text-center">
+                <div class="card-body cardBodyItem">
+                  <div class="itemToBuy">
                     <p class="card-text">
                       ${items.item}
                     </p>
                   </div>
-                  <div class="text-right pt-4">
+                  <div class="btnToDeleteItem">
                     <button id="deleteBtn" data-id="${items.id}" class="btn btn-outline-danger">Delete</button>
                   </div>
                 </div>
@@ -281,8 +284,6 @@ let groceryListItem = () => {
         });
     });
 }
-
-groceryListItem();
 
 // Favorite users recipes entries
 $(document).on('click', "#favoriteRecipeBtn", (event) => {
@@ -335,14 +336,16 @@ let getAllFavorites = () => {
     }).then(res => {
         res.map(fav => {
             console.log(fav)
-            $('.favoriteContainer').append(`<div id="titleOfFavorite"><h2>${fav.title}</h2></div>
+            $('.favoriteContainer').append(`<div class="titleOfFavorite"> <div id="titleOfFavorite"><h2>${fav.title}</h2></div>
            <div id="preparationOfFav">
     <p>${fav.preparation}</p>
-            </div>`)
+            </div></div>`)
         })
         console.log(res)
     })
 
 }
 
+newSpaceForIngrd();
+groceryListItem();
 getAllFavorites();

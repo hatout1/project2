@@ -6,12 +6,9 @@ router.get("/", (req, res) => {
     console.log(req.query)
     db.ShoppingList.findAll({
         where: {
-            // id: req.params.id,
             UserId: req.query.UserId
         },
-        // include: [{ model: db.Users }]
-        // include: [db.User] || [db.Recipe]
-        // include: [db.users]
+        include: [{ model: db.Users }]
     }).then(items => {
         res.json(items)
     })
