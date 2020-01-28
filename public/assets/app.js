@@ -1,13 +1,69 @@
+const signedInUserId = '';
+const userStatus = '';
 $(document).ready(function () {
+    const Api = '028497f854d64e3bbec204cc32b6ce3b'
+
+    const ApplicationId = '9a0cb148';
+    const api = '7a34298f495a96286835d7025cd4748b';
+    const choice = 'salad'
+    const firstN = ''
+    const Last = firstN + 3
+
+    $.ajax({
+        type: "GET",
+        url: 'https://api.edamam.com/search?q=' + choice + '&app_id=' + ApplicationId + '&app_key=' + api + '&from=10&to=15&calories=591-722&health=alcohol-free',
+    }).then(res => {
+        let ingredients;
+        let recipeList = res.hits;
+        console.log(recipeList)
+        let recipesDisplay = () => {
+            for (r = 0; r < recipeList.length; r++) {
+                $('#apiResulteholder').append(`
+                <div cLass="eachApiRecipe" id="recipeData${r}"style="flex:1;">
+                    <div class="RecipeTitle addFavoriteToLike" id="addFavoritetitle">
+                        <p>
+                            ${res.hits[r].recipe.label}
+                        </p>
+                    </div>
+                    <div class="imagePlace addFavoriteToLike" id="addFavoriteimage">
+                        <img src="${res.hits[r].recipe.image}" alt="" style="flex:1">
+                    </div>
+                        <button class="addFavoriteBtnClass addFavoriteToLike" id="addFavoriteBtn" data-title ="${res.hits[r].recipe.label}" data-image="${res.hits[r].recipe.image}" data-info="${res.hits[r].recipe.url}" style="margin-bottom:10px;">Like it</button>
+                    <div class="apiIngredientslistDisplay">
+                    <p>Click for ingredients</p>
+                    </div>
+                    <div class="panel" style="display:none;">
+                        <div class="Ingred" id='Ingred${r}'>
+                        </div >
+                        <div id="linkToMoreInfo" onclick="window.open('${res.hits[r].recipe.url}')">More Info
+                        </div>
+                    
+                    </div>
+                </div>`
+                );
+                let IngredDisplay = function () {
+                    for (let i = 0; i < res.hits[r].recipe.ingredientLines.length; i++) {
+                        $(`#Ingred${r}`).append(
+                            `
+                            <ol class="ingradientApiNumberBtn" id="ingradientNumber${i}">
+                            <button class="ingradientNumberBtn" data-id="ing${[i]}" id="ingradientNumberBtn${[i]}" value="${res.hits[r].recipe.ingredientLines[i]}"> + </button>     ${res.hits[r].recipe.ingredientLines[i]}</ol>`)
+                    }
+                }
+                IngredDisplay()
+            }
+        }
+        recipesDisplay();
+    })
 
     $.ajax({
         method: 'GET',
         url: '/status'
     }).then(res => {
         if (res) {
-            console.log(res)
+            console.log(res);
+            (signedInUserId).push(res.uid);
             sessionStorage.setItem("signedInUser", res.uid)
-            const userStatus = sessionStorage.getItem("signedInUser");
+            userStatus = sessionStorage.getItem("signedInUser");
             // $('#signUpModal').modal('hide');
             // $("#signInBtn").text("Logout");
             // $('#signInBtn').attr('data-target', '');
@@ -24,10 +80,10 @@ $(document).ready(function () {
 
     // console.log(userStatus)
     if (userStatus === "") {
-        // sessionStorage.setItem("signedInUser", res.uid)
         // sessionStorage.clear()
         console.log("nothing to show")
     } else {
+        sessionStorage.setItem("signedInUser", signedInUserId)
         $('#signUpModal').modal('hide');
         $("#signInBtn").text("Logout");
         $('#signInBtn').attr('data-target', '');
@@ -37,6 +93,12 @@ $(document).ready(function () {
     }
 
 });
+
+
+$(document).on('click', '.apiIngredientslistDisplay', () => {
+    $(".panel").slideToggle("slow");
+})
+
 
 
 // Sign up new users
@@ -55,7 +117,7 @@ $(document).on('click', '#signUpNewBtn', (event) => {
         url: "/SignUp",
         data: data
     }).then(res => {
-
+        res.send();
     });
     $('#signUpModal').modal('hide');
     $("#signInBtn").text("Logout");
@@ -117,6 +179,7 @@ let newSpaceForIngrd = () => {
 </div>`)
     })
 }
+newSpaceForIngrd();
 
 // Add new recipe function
 $(document).on('click', '#addNewRecipeBtn', (ev) => {
@@ -284,6 +347,7 @@ let groceryListItem = () => {
         });
     });
 }
+groceryListItem();
 
 // Favorite users recipes entries
 $(document).on('click', "#favoriteRecipeBtn", (event) => {
@@ -345,7 +409,4 @@ let getAllFavorites = () => {
     })
 
 }
-
-newSpaceForIngrd();
-groceryListItem();
 getAllFavorites();

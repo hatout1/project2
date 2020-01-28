@@ -60,6 +60,106 @@
     </div>
 
 
+    <div class="modal fade" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="signInEmail" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="signInPassword">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="signInSubmitBtn">Submit</button>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <P>Not a member yet? please Sign up</P>
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal"
+                        data-whatever="@mdo" id="signUpBtn" style="flex: 1; margin-right: 10px; margin-left: 10px;">Sign
+                        Up</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal to sign up -->
+    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="signUpForm">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="validationDefault01">email</label>
+                                <input type="text" class="form-control" id="validationEmail" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="validationDefault02">Password</label>
+                                <input type="password" class="form-control" id="validationPassword" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="validationDefaultUsername">Username</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="validationUsername"
+                                        aria-describedby="inputGroupPrepend2" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="validationDefault05">Diet</label>
+                                <select class="form-control" id="validationDiet">
+                                    <option>Choose ... </option>
+                                    <option id="human" value="human">Human</option>
+                                    <option id="vegetarian" value="vegetarian">vegetarian</option>
+                                    <option id="vegan" value="vegan">vegan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="validationDefault05">Zipcode</label>
+                                <input type="text" class="form-control" id="validationZipcode" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit" id="signUpNewBtn">Sign Up</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="modal fade" id="newRecipeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

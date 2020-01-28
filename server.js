@@ -34,7 +34,7 @@ const Fdbase = admin.firestore();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./public"));
-// app.set('public', __dirname + '/public');
+app.set('public', __dirname + '/public');
 
 const apiRoutes = require("./routes/api/apiRoutes");
 app.use("/api/user", apiRoutes);
@@ -99,7 +99,7 @@ app.post('/home', (req, res) => {
 app.post('/signout', (req, res) => {
     auth.signOut()
     res.send(auth)
-    statusLog()
+    // statusLog()
 })
 
 
