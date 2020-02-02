@@ -16,7 +16,11 @@
     "operatorsAliases": false
   },
   "production": {
-    "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql"
+    "username": "bac305748b914e",
+    "password": "2ff04281",
+    "database": "heroku_9a909c9366b3b5f",
+    "host": "us-cdbr-iron-east-04.cleardb.net",
+    "dialect": "mysql",
+    "operatorsAliases": 0
   }
 }

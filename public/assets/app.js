@@ -1,10 +1,12 @@
 // const signedInUserId = 'GvP714nmvhhtxzwPnum2kovRpqN2';
-const signedInUserId = '1RumrAiDWqWMNHIueOmE3hnaMyJ2';
+let signedInUserId = '1RumrAiDWqWMNHIueOmE3hnaMyJ2';
 // const signedInUserId = 'v3KNN9H2iHMqSoYpD0B8KOrRMl52';
 
 
-const userStatus = '';
+let userStatus = '1RumrAiDWqWMNHIueOmE3hnaMyJ2';
 $(document).ready(function () {
+    signedInUserId = '1RumrAiDWqWMNHIueOmE3hnaMyJ2';
+
     const Api = '028497f854d64e3bbec204cc32b6ce3b'
 
     const ApplicationId = '9a0cb148';
@@ -67,7 +69,7 @@ $(document).ready(function () {
             console.log(res);
             // (signedInUserId).push(res.uid);
             sessionStorage.setItem("signedInUser", res.uid)
-            userStatus = signedInUserId
+            userStatus = "1RumrAiDWqWMNHIueOmE3hnaMyJ2"
             // sessionStorage.getItem("signedInUser");
             // $('#signUpModal').modal('hide');
             // $("#signInBtn").text("Logout");
@@ -230,12 +232,12 @@ let allRecipes = () => {
         url: '/api/recipe',
     }).then(res => {
         // console.log(res)
-        // console.log(res[0].title)
+        // console.log("these are all recipes' titles: \n" + res)
         // console.log(res[0].ingredients)
         // console.log(res[0].createdAt.split('T')[0])
         let newRecipe = '<div></div>';
         res.map((recipe, i) => {
-            console.log(recipe)
+            console.log("these are all recipes' titles: \n" + recipe)
             // console.log(i);
             console.log(recipe.recipeId)
             let recipeIngredients = recipe.ingredients.split('&');
