@@ -1,4 +1,8 @@
-const signedInUserId = '';
+// const signedInUserId = 'GvP714nmvhhtxzwPnum2kovRpqN2';
+const signedInUserId = '1RumrAiDWqWMNHIueOmE3hnaMyJ2';
+// const signedInUserId = 'v3KNN9H2iHMqSoYpD0B8KOrRMl52';
+
+
 const userStatus = '';
 $(document).ready(function () {
     const Api = '028497f854d64e3bbec204cc32b6ce3b'
@@ -61,9 +65,10 @@ $(document).ready(function () {
     }).then(res => {
         if (res) {
             console.log(res);
-            (signedInUserId).push(res.uid);
+            // (signedInUserId).push(res.uid);
             sessionStorage.setItem("signedInUser", res.uid)
-            userStatus = sessionStorage.getItem("signedInUser");
+            userStatus = signedInUserId
+            // sessionStorage.getItem("signedInUser");
             // $('#signUpModal').modal('hide');
             // $("#signInBtn").text("Logout");
             // $('#signInBtn').attr('data-target', '');
@@ -202,7 +207,9 @@ $(document).on('click', '#addNewRecipeBtn', (ev) => {
         majorIngr: recipeDiscreption,
         ingredients: allrecipeIngredients,
         preparation: recipePreparation,
-        UserId: sessionStorage.getItem("signedInUser")
+
+        UserId: signedInUserId,
+        // sessionStorage.getItem("signedInUser")
     }
 
     $.ajax({
@@ -278,7 +285,8 @@ $(document).on('click', '#addNewCommentBtn', (comm) => {
     // let currentTime = moment().format('MMMM Do YYYY, h:mm:ss a')
     const commentData = {
         body: $('#commentEntryInpuId').val(),
-        UserId: sessionStorage.getItem("signedInUser"),
+        UserId: signedInUserId,
+        // sessionStorage.getItem("signedInUser"),
         recipeId: '1'
     }
     $.ajax({
@@ -309,7 +317,8 @@ $(document).on('click', ('.ingradientApiNumberBtn'), (ev) => {
     console.log(apiIngToList)
     favoriteList.push(apiIngToList)
     console.log(favoriteList);
-    const UserId = sessionStorage.getItem("signedInUser");
+    const UserId = signedInUserId
+    // sessionStorage.getItem("signedInUser");
     const item = $(ev.target).val();
     const data = { UserId: UserId, item: item }
     $.ajax({
@@ -323,7 +332,8 @@ $(document).on('click', ('.ingradientApiNumberBtn'), (ev) => {
 
 // Display shopping item on GroceryList page
 let groceryListItem = () => {
-    const UserId = sessionStorage.getItem("signedInUser");
+    const UserId = signedInUserId
+    // sessionStorage.getItem("signedInUser");
     $.ajax({
         method: "GET",
         url: `/api/shopping/?UserId=${UserId}`
@@ -353,7 +363,8 @@ groceryListItem();
 $(document).on('click', "#favoriteRecipeBtn", (event) => {
     event.preventDefault();
     const liked = {
-        UserId: sessionStorage.getItem("signedInUser"),
+        UserId: signedInUserId,
+        // sessionStorage.getItem("signedInUser"),
         title: event.target.getAttribute('data-title'),
         preparation: event.target.getAttribute('data-preparation'),
         recipeId: event.target.getAttribute('data-Id')
@@ -376,7 +387,8 @@ $(document).on('click', ('#addFavoriteBtn'), (ev) => {
     console.log('Hello')
 
     const liked = {
-        UserId: sessionStorage.getItem("signedInUser"),
+        UserId: signedInUserId,
+        // sessionStorage.getItem("signedInUser"),
         title: event.target.getAttribute('data-title'),
         preparation: event.target.getAttribute('data-info'),
         recipeId: event.target.getAttribute('data-Id')
@@ -393,7 +405,8 @@ $(document).on('click', ('#addFavoriteBtn'), (ev) => {
 
 // get liked recipes 
 let getAllFavorites = () => {
-    const UserId = sessionStorage.getItem("signedInUser");
+    const UserId = signedInUserId
+    // sessionStorage.getItem("signedInUser");
     $.ajax({
         method: 'GET',
         url: `/api/favorite/?UserId=${UserId}`,
@@ -409,4 +422,5 @@ let getAllFavorites = () => {
     })
 
 }
+
 getAllFavorites();

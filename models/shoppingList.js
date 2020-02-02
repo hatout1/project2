@@ -2,8 +2,7 @@ module.exports = (sequelize, DataTypes) => {
     const ShoppingList = sequelize.define("ShoppingList", {
         item: {
             type: DataTypes.STRING,
-            // allowNull: false,
-            // len: [1]
+
         },
         UserId: {
             type: DataTypes.STRING
