@@ -1,10 +1,10 @@
 $(document).ready(function () {
     // const signedInUserId = 'GvP714nmvhhtxzwPnum2kovRpqN2';
-    let signedInUserId = '1RumrAiDWqWMNHIueOmE3hnaMyJ2';
+    let signedInUserId = '3PuvEQOyB9RSDNbZfbLjRLWscgf2';
     // const signedInUserId = 'v3KNN9H2iHMqSoYpD0B8KOrRMl52';
 
 
-    let userStatus = '1RumrAiDWqWMNHIueOmE3hnaMyJ2';
+    let userStatus = '3PuvEQOyB9RSDNbZfbLjRLWscgf2';
 
 
     const Api = '028497f854d64e3bbec204cc32b6ce3b'
