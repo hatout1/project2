@@ -22,12 +22,8 @@ $(document).ready(function () {
     function eraseCookie(name) {
         document.cookie = name + '=; Max-Age=-99999999;';
     }
-    // const signedInUserId = 'GvP714nmvhhtxzwPnum2kovRpqN2';
-    // let signedInUserId = '3PuvEQOyB9RSDNbZfbLjRLWscgf2';
-    // const signedInUserId = 'v3KNN9H2iHMqSoYpD0B8KOrRMl52';
 
-
-    let userStatus = '3PuvEQOyB9RSDNbZfbLjRLWscgf2';
+    let userStatus = '';
 
 
     const Api = '028497f854d64e3bbec204cc32b6ce3b'
@@ -44,7 +40,7 @@ $(document).ready(function () {
     }).then(res => {
         let ingredients;
         let recipeList = res.hits;
-        console.log(recipeList)
+        // console.log(recipeList)
         let recipesDisplay = () => {
             for (r = 0; r < recipeList.length; r++) {
                 $('#apiResulteholder').append(`
@@ -89,12 +85,12 @@ $(document).ready(function () {
         url: '/status'
     }).then(res => {
         if (res) {
-            console.log(res);
+            // console.log(res);
             // (signedInUserId).push(res.uid);
             setCookie('userIdCookie', res.uid, 1);
 
             userStatus = getCookie('userIdCookie');
-            sessionStorage.setItem("signedInUser", res.uid)
+            // sessionStorage.setItem("signedInUser", res.uid)
             // userStatus = "1RumrAiDWqWMNHIueOmE3hnaMyJ2"
             // sessionStorage.getItem("signedInUser");
             $('#signUpModal').modal('hide');
@@ -104,31 +100,25 @@ $(document).ready(function () {
             $('#signUpBtn').hide();
             newSpaceForIngrd()
         } else {
-            console.log("Sorrrrrrryyyyyyyyyyyyyy")
+            // console.log("Sorrrrrrryyyyyyyyyyyyyy")
             userstatusUpdate = false;
         }
 
     });
 
+    // // console.log(userStatus)
+    // if (userStatus === "") {
+    //     // sessionStorage.clear()
+    //     console.log("nothing to show")
+    // } else {
+    //     // sessionStorage.setItem("signedInUser", signedInUserId)
+    //     // $('#signUpModal').modal('hide');
+    //     // $("#signInBtn").text("Logout");
+    //     // $('#signInBtn').attr('data-target', '');
+    //     // $('#signInBtn').attr('id', 'logout');
+    //     // $('#signUpBtn').hide();
 
-
-
-
-
-
-    // console.log(userStatus)
-    if (userStatus === "") {
-        // sessionStorage.clear()
-        console.log("nothing to show")
-    } else {
-        // sessionStorage.setItem("signedInUser", signedInUserId)
-        // $('#signUpModal').modal('hide');
-        // $("#signInBtn").text("Logout");
-        // $('#signInBtn').attr('data-target', '');
-        // $('#signInBtn').attr('id', 'logout');
-        // $('#signUpBtn').hide();
-
-    }
+    // }
 
 
     // get liked recipes ***************************************************************
@@ -141,13 +131,13 @@ $(document).ready(function () {
             url: `/api/favorite/?UserId=${UserId}`,
         }).then(res => {
             res.map(fav => {
-                console.log(fav)
+                // console.log(fav)
                 $('.favoriteContainer').append(`<div class="titleOfFavorite"> <div id="titleOfFavorite"><h2>${fav.title}</h2></div>
            <div id="preparationOfFav">
     <p>${fav.preparation}</p>
             </div></div>`)
             })
-            console.log(res)
+            // console.log(res)
         })
 
     }
@@ -209,7 +199,7 @@ $(document).ready(function () {
             $('#signInBtn').attr('id', 'logout');
             $('#signUpBtn').hide();
         } else {
-            console.log('signed out');
+            // console.log('signed out');
         }
     });
 
@@ -276,27 +266,23 @@ $(document).ready(function () {
             url: "/api/recipe",
             data: data,
         }).then(result => {
-            console.log(result)
+            // console.log(result)
         })
         allRecipes()
     })
     let favoiteTitle = '';
-    // // post all recipes
+    // post all recipes
     let allRecipes = () => {
 
         $.ajax({
             method: 'GET',
             url: '/api/recipe',
         }).then(res => {
-            // console.log(res)
-            // console.log("these are all recipes' titles: \n" + res)
-            // console.log(res[0].ingredients)
-            // console.log(res[0].createdAt.split('T')[0])
             let newRecipe = '<div></div>';
             res.map((recipe, i) => {
-                console.log("these are all recipes' titles: \n" + recipe)
+                // console.log("these are all recipes' titles: \n" + recipe)
                 // console.log(i);
-                console.log(recipe.recipeId)
+                // console.log(recipe.recipeId)
                 let recipeIngredients = recipe.ingredients.split('&');
                 // console.log(recipeIngredients);
                 newRecipe = newRecipe + `
@@ -306,6 +292,7 @@ $(document).ready(function () {
                             <h2 class="card-text">
                                 ${recipe.title}
                             </h2>
+                            <P>Published on: <br>${recipe.createdAt.split('T').join(" <br>at ").split('.')[0]}</P>
                         </div>
                         <br>
                         <div class="userRecipeIngredients">
@@ -313,7 +300,7 @@ $(document).ready(function () {
                          <p class="card-text IngredDis" id="recipe${i}">`;
 
                 for (let r = 0; r < recipeIngredients.length; r++) {
-                    console.log(recipeIngredients[r]);
+                    // console.log(recipeIngredients[r]);
                     newRecipe = newRecipe + `<ol class="ingradientApiNumberBtn" id="ingradientNumber${i}">
                              <button class="ingradientNumberBtn" data-id="ing${[i]}" id="ingradientNumberBtn${[i]}" value="${recipeIngredients[r]}"> + </button> ${recipeIngredients[r]}</ol>`;
                 }
@@ -373,9 +360,9 @@ $(document).ready(function () {
     $(document).on('click', ('.ingradientApiNumberBtn'), (ev) => {
         ev.preventDefault();
         const apiIngToList = $(ev.target).val();
-        console.log(apiIngToList)
+        // console.log(apiIngToList)
         favoriteList.push(apiIngToList)
-        console.log(favoriteList);
+        // console.log(favoriteList);
         const UserId = getCookie('userIdCookie')
         // sessionStorage.getItem("signedInUser");
         const item = $(ev.target).val();
@@ -428,7 +415,7 @@ $(document).ready(function () {
             preparation: event.target.getAttribute('data-preparation'),
             recipeId: event.target.getAttribute('data-Id')
         }
-        console.log(liked)
+        // console.log(liked)
         $.ajax({
             method: 'POST',
             url: '/api/favorite',
@@ -443,7 +430,7 @@ $(document).ready(function () {
     let favoriteRecipes = []
     $(document).on('click', ('#addFavoriteBtn'), (ev) => {
         ev.preventDefault();
-        console.log('Hello')
+        // console.log('Hello')
 
         const liked = {
             UserId: getCookie('userIdCookie'),
@@ -453,7 +440,7 @@ $(document).ready(function () {
             preparation: event.target.getAttribute('data-info'),
             recipeId: event.target.getAttribute('data-Id')
         }
-        console.log(liked)
+        // console.log(liked)
         $.ajax({
             method: 'POST',
             url: '/api/favorite',

@@ -12,7 +12,7 @@ module.exports = (sequlize, DataTypes) => {
         },
         title: {
             type: DataTypes.STRING,
-            // allowNull: false,
+            allowNull: false,
             // validate: {
             //     len: [4, 50]
             // }
@@ -31,7 +31,7 @@ module.exports = (sequlize, DataTypes) => {
         },
         preparation: {
             type: DataTypes.TEXT,
-            // allowNull: false,
+            allowNull: false,
             // validate: {
             //     len: [1, 1500]
             // }
