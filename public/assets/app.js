@@ -1,6 +1,29 @@
 $(document).ready(function () {
+
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+    function eraseCookie(name) {
+        document.cookie = name + '=; Max-Age=-99999999;';
+    }
     // const signedInUserId = 'GvP714nmvhhtxzwPnum2kovRpqN2';
-    let signedInUserId = '3PuvEQOyB9RSDNbZfbLjRLWscgf2';
+    // let signedInUserId = '3PuvEQOyB9RSDNbZfbLjRLWscgf2';
     // const signedInUserId = 'v3KNN9H2iHMqSoYpD0B8KOrRMl52';
 
 
@@ -68,35 +91,9 @@ $(document).ready(function () {
         if (res) {
             console.log(res);
             // (signedInUserId).push(res.uid);
-            function setCookie(name, value, days) {
-                var expires = "";
-                if (days) {
-                    var date = new Date();
-                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                    expires = "; expires=" + date.toUTCString();
-                }
-                document.cookie = name + "=" + (value || "") + expires + "; path=/";
-            }
-            function getCookie(name) {
-                var nameEQ = name + "=";
-                var ca = document.cookie.split(';');
-                for (var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-                }
-                return null;
-            }
-            function eraseCookie(name) {
-                document.cookie = name + '=; Max-Age=-99999999;';
-            }
-
             setCookie('userIdCookie', res.uid, 1);
 
             userStatus = getCookie('userIdCookie');
-
-
-
             sessionStorage.setItem("signedInUser", res.uid)
             // userStatus = "1RumrAiDWqWMNHIueOmE3hnaMyJ2"
             // sessionStorage.getItem("signedInUser");
@@ -124,7 +121,7 @@ $(document).ready(function () {
         // sessionStorage.clear()
         console.log("nothing to show")
     } else {
-        sessionStorage.setItem("signedInUser", signedInUserId)
+        // sessionStorage.setItem("signedInUser", signedInUserId)
         $('#signUpModal').modal('hide');
         $("#signInBtn").text("Logout");
         $('#signInBtn').attr('data-target', '');
@@ -136,7 +133,8 @@ $(document).ready(function () {
 
     // get liked recipes ***************************************************************
     let getAllFavorites = () => {
-        const UserId = getCookie('userIdCookie')
+
+        const UserId = getCookie('userIdCookie');
         // sessionStorage.getItem("signedInUser");
         $.ajax({
             method: 'GET',
@@ -228,7 +226,9 @@ $(document).ready(function () {
         $("#logout").text("Sign In")
         $('#logout').attr('data-target', '#signModal')
         $('#logout').attr('id', 'signInBtn');
-        $('#signUpBtn').show()
+        $('#signUpBtn').show();
+        eraseCookie('userIdCookie');
+
     });
 
     // Add new space to enter more ingredients
