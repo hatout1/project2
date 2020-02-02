@@ -24,5 +24,18 @@ router.post("/", (req, res) => {
     });
 });
 
+router.delete("/", (req, res) => {
+    db.ShoppingList.destroy({
+        where: {
+            id: req.query.id
+        }
+    }).then(item => {
+        console.log(item)
+        // console.log(id)
+
+        res.json(item)
+    });
+})
+
 
 module.exports = router;

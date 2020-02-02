@@ -280,9 +280,6 @@ $(document).ready(function () {
         }).then(res => {
             let newRecipe = '<div></div>';
             res.map((recipe, i) => {
-                // console.log("these are all recipes' titles: \n" + recipe)
-                // console.log(i);
-                // console.log(recipe.recipeId)
                 let recipeIngredients = recipe.ingredients.split('&');
                 // console.log(recipeIngredients);
                 newRecipe = newRecipe + `
@@ -395,7 +392,7 @@ $(document).ready(function () {
                     </p>
                   </div>
                   <div class="btnToDeleteItem">
-                    <button id="deleteBtn" data-id="${items.id}" class="btn btn-outline-danger">Delete</button>
+                    <button id="deleteShopLBtn" data-id="${items.id}" class="btn btn-outline-danger">Delete</button>
                   </div>
                 </div>
               </div>`
@@ -404,6 +401,18 @@ $(document).ready(function () {
         });
     }
     groceryListItem();
+
+    // Delete item from shopping list:
+    $(document).on('click', '#deleteShopLBtn', (sl) => {
+        sl.preventDefault();
+        let data = event.target.getAttribute('data-Id');
+        $.ajax({
+            method: 'DELETE',
+            url: `/api/shopping/?id=${data}`
+        }).then(res => {
+            window.location.href = "/GroceryList.html";
+        })
+    })
 
     // Favorite users recipes entries
     $(document).on('click', "#favoriteRecipeBtn", (event) => {
