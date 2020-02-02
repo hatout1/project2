@@ -68,8 +68,37 @@ $(document).ready(function () {
         if (res) {
             console.log(res);
             // (signedInUserId).push(res.uid);
+            function setCookie(name, value, days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "") + expires + "; path=/";
+            }
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+            function eraseCookie(name) {
+                document.cookie = name + '=; Max-Age=-99999999;';
+            }
+
+            setCookie('userIdCookie', res.uid, 1);
+
+            userStatus = getCookie('userIdCookie');
+
+
+
             sessionStorage.setItem("signedInUser", res.uid)
-            userStatus = "1RumrAiDWqWMNHIueOmE3hnaMyJ2"
+            // userStatus = "1RumrAiDWqWMNHIueOmE3hnaMyJ2"
             // sessionStorage.getItem("signedInUser");
             // $('#signUpModal').modal('hide');
             // $("#signInBtn").text("Logout");
@@ -107,7 +136,7 @@ $(document).ready(function () {
 
     // get liked recipes ***************************************************************
     let getAllFavorites = () => {
-        const UserId = signedInUserId
+        const UserId = getCookie('userIdCookie')
         // sessionStorage.getItem("signedInUser");
         $.ajax({
             method: 'GET',
@@ -238,7 +267,7 @@ $(document).ready(function () {
             ingredients: allrecipeIngredients,
             preparation: recipePreparation,
 
-            UserId: signedInUserId,
+            UserId: getCookie('userIdCookie'),
             // sessionStorage.getItem("signedInUser")
         }
 
@@ -315,7 +344,7 @@ $(document).ready(function () {
         // let currentTime = moment().format('MMMM Do YYYY, h:mm:ss a')
         const commentData = {
             body: $('#commentEntryInpuId').val(),
-            UserId: signedInUserId,
+            UserId: getCookie('userIdCookie'),
             // sessionStorage.getItem("signedInUser"),
             recipeId: '1'
         }
@@ -347,7 +376,7 @@ $(document).ready(function () {
         console.log(apiIngToList)
         favoriteList.push(apiIngToList)
         console.log(favoriteList);
-        const UserId = signedInUserId
+        const UserId = getCookie('userIdCookie')
         // sessionStorage.getItem("signedInUser");
         const item = $(ev.target).val();
         const data = { UserId: UserId, item: item }
@@ -362,7 +391,7 @@ $(document).ready(function () {
 
     // Display shopping item on GroceryList page
     let groceryListItem = () => {
-        const UserId = signedInUserId
+        const UserId = getCookie('userIdCookie');
         // sessionStorage.getItem("signedInUser");
         $.ajax({
             method: "GET",
@@ -393,7 +422,7 @@ $(document).ready(function () {
     $(document).on('click', "#favoriteRecipeBtn", (event) => {
         event.preventDefault();
         const liked = {
-            UserId: signedInUserId,
+            UserId: getCookie('userIdCookie'),
             // sessionStorage.getItem("signedInUser"),
             title: event.target.getAttribute('data-title'),
             preparation: event.target.getAttribute('data-preparation'),
@@ -417,7 +446,8 @@ $(document).ready(function () {
         console.log('Hello')
 
         const liked = {
-            UserId: signedInUserId,
+            UserId: getCookie('userIdCookie'),
+            // signedInUserId,
             // sessionStorage.getItem("signedInUser"),
             title: event.target.getAttribute('data-title'),
             preparation: event.target.getAttribute('data-info'),
