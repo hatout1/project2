@@ -6,9 +6,9 @@ router.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../../public/home.html"));
 });
 
-router.get("/list", (req, res) => {
-    console.log(req.query);
-    res.sendFile(path.join(__dirname, "../../public/privatespace.html"));
-});
+// router.get("/list", (req, res) => {
+//     console.log(req.query);
+//     res.sendFile(path.join(__dirname, "../../public/privatespace.html"));
+// });
 
 module.exports = router;

@@ -3,6 +3,7 @@ const app = express();
 const db = require("./models");
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8500;
+
 var moment = require('moment');
 moment().format();
 
@@ -92,14 +93,14 @@ app.post('/home', (req, res) => {
     password = req.body.password
     auth.signInWithEmailAndPassword(email, password)
     res.send(auth)
-    // statusLog()
+
 })
 
 // sign out singed in user
 app.post('/signout', (req, res) => {
     auth.signOut()
     res.send(auth)
-    // statusLog()
+
 })
 
 
@@ -107,27 +108,15 @@ app.get('/status', (req, res) => {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             res.send(user)
-            // res.send(true)
+
             console.log('signed in')
             app.set('public', __dirname + '/public');
         } else {
             console.log("No user is signed in.")
-            // res.send(false)
+
         }
     })
 })
-
-// let statusLog = auth.onAuthStateChanged(user => {
-//     if (user) {
-//         console.log('signed in');
-//         console.log(user.email)
-//         console.log(user.uid)
-
-//     } else {
-//         console.log('signed out!!!!!!!!');
-//     }
-// });
-
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
