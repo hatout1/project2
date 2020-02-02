@@ -2,29 +2,29 @@ module.exports = (sequelize, DataTypes) => {
     const Planning = sequelize.define("Planning", {
         title: {
             type: DataTypes.STRING,
-            allowNull: false,
+            // allowNull: false,
         },
         ingredients: {
             type: DataTypes.STRING,
-            allowNull: false,
-            len: [1]
+            // allowNull: false,
+            // len: [1]
         },
         preparation: {
             type: DataTypes.TEXT,
-            allowNull: false,
-            validate: {
-                len: [1, 1500]
-            }
+            // allowNull: false,
+            // validate: {
+            //     len: [1, 1500]
+            // }
         },
         day: {
             type: DataTypes.STRING,
-            allowNull: false,
-            len: [1]
+            // allowNull: false,
+            // len: [1]
         },
         meal: {
             type: DataTypes.STRING,
-            allowNull: false,
-            len: [1]
+            // allowNull: false,
+            // len: [1]
         },
     });
 

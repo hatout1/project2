@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
         // },
         body: {
             type: DataTypes.TEXT,
-            allowNull: false,
-            len: [1]
+            // allowNull: false,
+            // len: [1]
         }
     });
     Comments.associate = models => {

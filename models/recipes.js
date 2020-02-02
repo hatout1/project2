@@ -12,29 +12,29 @@ module.exports = (sequlize, DataTypes) => {
         },
         title: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [4, 50]
-            }
+            // allowNull: false,
+            // validate: {
+            //     len: [4, 50]
+            // }
         },
         majorIngr: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [3, 50]
-            }
+            // allowNull: false,
+            // validate: {
+            //     len: [3, 50]
+            // }
         },
         ingredients: {
             type: DataTypes.TEXT,
-            allowNull: false,
-            len: [1]
+            // allowNull: false,
+            // len: [1]
         },
         preparation: {
             type: DataTypes.TEXT,
-            allowNull: false,
-            validate: {
-                len: [1, 1500]
-            }
+            // allowNull: false,
+            // validate: {
+            //     len: [1, 1500]
+            // }
         },
         UserId: {
             type: DataTypes.STRING
