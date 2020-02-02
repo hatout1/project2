@@ -97,11 +97,11 @@ $(document).ready(function () {
             sessionStorage.setItem("signedInUser", res.uid)
             // userStatus = "1RumrAiDWqWMNHIueOmE3hnaMyJ2"
             // sessionStorage.getItem("signedInUser");
-            // $('#signUpModal').modal('hide');
-            // $("#signInBtn").text("Logout");
-            // $('#signInBtn').attr('data-target', '');
-            // $('#signInBtn').attr('id', 'logout');
-            // $('#signUpBtn').hide();
+            $('#signUpModal').modal('hide');
+            $("#signInBtn").text("Logout");
+            $('#signInBtn').attr('data-target', '');
+            $('#signInBtn').attr('id', 'logout');
+            $('#signUpBtn').hide();
             newSpaceForIngrd()
         } else {
             console.log("Sorrrrrrryyyyyyyyyyyyyy")
@@ -122,11 +122,11 @@ $(document).ready(function () {
         console.log("nothing to show")
     } else {
         // sessionStorage.setItem("signedInUser", signedInUserId)
-        $('#signUpModal').modal('hide');
-        $("#signInBtn").text("Logout");
-        $('#signInBtn').attr('data-target', '');
-        $('#signInBtn').attr('id', 'logout');
-        $('#signUpBtn').hide();
+        // $('#signUpModal').modal('hide');
+        // $("#signInBtn").text("Logout");
+        // $('#signInBtn').attr('data-target', '');
+        // $('#signInBtn').attr('id', 'logout');
+        // $('#signUpBtn').hide();
 
     }
 
