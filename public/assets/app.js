@@ -268,6 +268,7 @@ $(document).ready(function () {
         }).then(result => {
             // console.log(result)
         })
+        window.location.href = "/home.html"
         allRecipes()
     })
     let favoiteTitle = '';
@@ -319,6 +320,7 @@ $(document).ready(function () {
                 </div>`;
             });
             $('.allRecipesAres').append(newRecipe);
+
         })
     }
 
