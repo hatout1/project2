@@ -42,8 +42,8 @@
         <div class="d-flex align-items-center p-3 my-3 rounded shadow-sm"
             style="background-color: rgba(0, 140, 255, 0.308); flex: 12;">
             <div>
-                <h6 class="mb-0 text-white lh-100" id="UsernameProfile"><span></span>Username: </h6>
-                <small>Member since: <span></span></small>
+                <h6 class="mb-0 text-white lh-100" id="UsernameProfile"><span id="UsernameProfileDemo1"></span></h6>
+                <small>Member since: <span id="MemberSincProfileDemo1"></span></small>
             </div>
         </div>
     </div>
@@ -213,24 +213,115 @@
 
     <!-- top of the profile page that hold image -->
 
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title" id="UsernameProfile">Username: <span></span></h5>
-            <h5 class="card-title" id="EmailProfile">Email: <span></span></h5>
-            <h5 class="card-title" id="DietProfile">Diet: <span></span></h5>
-            <h5 class="card-title" id="PhoneNumberProfile">Phone Number: <span></span></h5>
-            <h5 class="card-title" id="AddressProfile">Address: <span></span></h5>
-            <h5 class="card-title" id="CityProfile">City: <span></span></h5>
-            <h5 class="card-title" id="ZipcodeProfile">Zipcode: <span></span></h5>
-            <h5 class="card-title" id="CountryProfile">Country: <span></span></h5>
-            <h5 class="card-title" id="MemberSincProfile">Member Since: <span></span></h5>
-            <h5 class="card-title" id="CommunitiesProfile">Communities: <span></span></h5>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card profileInfo">
+        <div class="card-body profileInfDiv">
+            <br>
+            <div class="profileRow">
+                <h3 class="card-title" id="UsernameProfile">Username: </h3>
+                <h5> <span class="spamDemo" id="UsernameProfileDemo2"></span></h5>
+            </div>
+            <br>
+            <div class="profileRow">
+                <h3 class="card-title" id="EmailProfile">Email: </h3>
+                <h5> <span class="spamDemo" id="EmailProfileDemo"></span></h5>
+            </div>
+            <br>
+            <div class="profileRow">
+                <h3 class="card-title" id="DietProfile">Diet: </h3>
+                <h5> <span class="spamDemo" id="DietProfileDemo"></span></h5>
+            </div>
+            <br>
+            <div class="profileRow">
+                <h3 class="card-title" id="AddressProfile">Address: </h3>
+                <h5> <span class="spamDemo" id="AddressProfileDemo"></span></h5>
+            </div>
+            <br>
+            <div class="profileRow">
+                <h3 class="card-title" id="CityProfile">City: </h3>
+                <h5> <span class="spamDemo" id="CityProfileDemo"></span></h5>
+            </div>
+            <br>
+            <div class="profileRow">
+                <h3 class="card-title" id="StateProfile">State: </h3>
+                <h5> <span class="spamDemo" id="StateProfileDemo"></span></h5>
+            </div>
+            <br>
+            <div class="profileRow">
+                <h3 class="card-title" id="ZipcodeProfile">Zipcode: </h3>
+                <h5> <span class="spamDemo" id="ZipcodeProfileDemo"></span></h5>
+            </div>
+            <br>
+            <div class="profileRow">
+                <h3 class="card-title" id="CountryProfile">Country: </h3>
+                <h5> <span class="spamDemo" id="CountryProfileDemo"></span></h5>
+            </div>
+            <br>
+            <div class="profileRow">
+                <h3 class="card-title" id="MemberSincProfile">Member Since: </h3>
+                <h5> <span class="spamDemo" id="MemberSincProfileDemo2"></span></h5>
+            </div>
+            <a><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal"
+                    data-whatever="@mdo" id="signInBtn">Update Your Information</button></a>
         </div>
     </div>
 
 
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Please enter your new information</h5>
+                </div>
 
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">User Name</label>
+                            <input type="email" class="form-control" id="UpdatedUsername" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Diet</label>
+                            <input type="email" class="form-control" id="UpdatedDiet" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Address</label>
+                            <input type="email" class="form-control" id="UpdatedAddress" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">City</label>
+                            <input type="email" class="form-control" id="UpdatedCity" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">State</label>
+                            <input type="email" class="form-control" id="UpdatedState" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Zipcode</label>
+                            <input type="email" class="form-control" id="UpdatedZipcode" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Country</label>
+                            <input type="email" class="form-control" id="UpdatedCountry" aria-describedby="emailHelp">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updateModal"
+                        data-whatever="@mdo" id="infoUpdateBtn"
+                        style="flex: 1; margin-right: 10px; margin-left: 10px;">Update</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

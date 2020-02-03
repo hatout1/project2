@@ -461,4 +461,53 @@ $(document).ready(function () {
         })
     })
     allRecipes()
+
+    // portfolio information
+    let userPro = () => {
+        let UserId = getCookie('userIdCookie');
+        $.ajax({
+            method: "GET",
+            url: `/api/user/one/?UserId=${UserId}`,
+        }).then(res => {
+            res.map(result => {
+                console.log(result)
+                $("#UsernameProfileDemo1").text(result.username);
+                $("#UsernameProfileDemo2").text(result.username);
+                $("#EmailProfileDemo").text(result.email);
+                $("#DietProfileDemo").text(result.diet);
+                $("#AddressProfileDemo").text(result.adress);
+                $("#CityProfileDemo").text(result.city);
+                $("#StateProfileDemo").text(result.state);
+                $("#ZipcodeProfileDemo").text(result.zipcode);
+                $("#CountryProfileDemo").text(result.country);
+                $("#MemberSincProfileDemo1").text(result.createdAt.split("T")[0]);
+                // $("#MemberSincProfileDemo2").text(result.createdAt.split("T")[0]);
+                $('#MemberSincProfileDemo2').text(result.createdAt.split("T")[0])
+            })
+        })
+    }
+    userPro()
+    // update portfolio information
+
+    $(document).on('click', '#infoUpdateBtn', (e) => {
+        e.preventDefault()
+        console.log('Clicked')
+
+        const username = '';
+        const diet = '';
+        const adress = '';
+        const city = '';
+        const state = '';
+        const zipcode = '';
+        const country = '';
+
+        $.ajax({
+            method: "UPDATE",
+            url: "",
+            data: ""
+        }).then(res => {
+            res.send()
+        })
+    })
+
 });

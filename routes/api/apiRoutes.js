@@ -24,7 +24,15 @@ router.post("/", (req, res) => {
     });
 });
 
-
+router.get("/one", (req, res) => {
+    db.Users.findAll({
+        where: {
+            UserId: req.query.UserId
+        }
+    }).then(info => {
+        res.json(info);
+    })
+})
 
 
 module.exports = router;
