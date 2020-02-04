@@ -489,25 +489,25 @@ $(document).ready(function () {
     userPro()
     // update portfolio information
 
-    $(document).on('click', '#infoUpdateBtn', (e) => {
-        e.preventDefault()
-        console.log('Clicked')
+    // $(document).on('click', '#infoUpdateBtn', (e) => {
+    //     e.preventDefault()
+    //     console.log('Clicked')
 
-        const username = '';
-        const diet = '';
-        const adress = '';
-        const city = '';
-        const state = '';
-        const zipcode = '';
-        const country = '';
+    //     const username = '';
+    //     const diet = '';
+    //     const adress = '';
+    //     const city = '';
+    //     const state = '';
+    //     const zipcode = '';
+    //     const country = '';
 
-        $.ajax({
-            method: "UPDATE",
-            url: "",
-            data: ""
-        }).then(res => {
-            res.send()
-        })
-    })
+    //     $.ajax({
+    //         method: "UPDATE",
+    //         url: "",
+    //         data: ""
+    //     }).then(res => {
+    //         res.send()
+    //     })
+    // })
 
 });
