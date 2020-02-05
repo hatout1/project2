@@ -116,11 +116,17 @@ align-self: center;
     text-align: center;
     background-image: url('https://www.cookingclassy.com/wp-content/uploads/2019/06/belgian-waffles-1.jpg');
     opacity: 0.5;
+    min-height: 900px;
 }
 
-.IngrList {
-    flex: 2;
+.secondDiv {
+    flex: 4;
     text-align: center;
+    display: flex;
+}
+
+.IngrList{
+    flex: 2;
 }
 
 .groceryListRightDiv {

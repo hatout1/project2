@@ -462,6 +462,14 @@ $(document).ready(function () {
     })
     allRecipes()
 
+    let upUsername = "";
+    let upDiet = "";
+    let upAddress = "";
+    let upCity = "";
+    let upState = "";
+    let upZipcode = "";
+    let upCountry = "";
+
     // portfolio information
     let userPro = () => {
         let UserId = getCookie('userIdCookie');
@@ -482,7 +490,16 @@ $(document).ready(function () {
                 $("#CountryProfileDemo").text(result.country);
                 $("#MemberSincProfileDemo1").text(result.createdAt.split("T")[0]);
                 // $("#MemberSincProfileDemo2").text(result.createdAt.split("T")[0]);
-                $('#MemberSincProfileDemo2').text(result.createdAt.split("T")[0])
+                $('#MemberSincProfileDemo2').text(result.createdAt.split("T")[0]);
+
+                upUsername = result.username;
+                upDiet = result.diet;
+                upAddress = result.adress;
+                upCity = result.city;
+                upState = result.state;
+                upZipcode = result.zipcode;
+                upCountry = result.country;
+
             })
         })
     }
@@ -493,17 +510,26 @@ $(document).ready(function () {
         e.preventDefault()
 
         const UserId = getCookie('userIdCookie');
-        const username = $('#UpdatedUsername').val();
-        const diet = $('#UpdatedDiet').val();
-        const adress = $('#UpdatedAddress').val();
-        const city = $('#UpdatedCity').val();
-        const state = $('#UpdatedState').val();
-        const zipcode = $('#UpdatedZipcode').val();
-        const country = $('#UpdatedCountry').val();
-        const data = {
+
+        const valUsername = $('#UpdatedUsername').val();
+        valUsername === "" ? username = upUsername : username = valUsername;
+        const valDiet = $('#UpdatedDiet').val();
+        valDiet === "" ? diet = upDiet : diet = valDiet;
+        const valAddress = $('#UpdatedAddress').val();
+        valAddress === "" ? adress = upAddress : adress = valAddress
+        const valCity = $('#UpdatedCity').val();
+        valCity === "" ? city = upCity : city = valCity
+        const valState = $('#UpdatedState').val();
+        valState === "" ? state = upState : state = valState
+        const valZipcode = $('#UpdatedZipcode').val();
+        valZipcode === "" ? zipcode = upZipcode : zipcode = valZipcode
+        const valCountry = $('#UpdatedCountry').val();
+        valCountry === "" ? country = upCountry : country = valCountry
+
+        data = {
             UserId, username, diet, adress, city, state, zipcode, country
         }
-        console.log(data)
+        // console.log(data)
 
         $.ajax({
             method: "PUT",
@@ -512,6 +538,7 @@ $(document).ready(function () {
         }).then(res => {
             res.send()
         })
+        window.location.href = "/profile.html"
     })
 
 });
