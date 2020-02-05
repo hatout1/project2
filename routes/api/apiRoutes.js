@@ -35,4 +35,28 @@ router.get("/one", (req, res) => {
 })
 
 
+router.put("/update", (req, res) => {
+    db.Users.update(
+        {
+            username: req.body.username,
+            diet: req.body.diet,
+            adress: req.body.adress,
+            city: req.body.city,
+            state: req.body.state,
+            zipcode: req.body.zipcode,
+            country: req.body.country
+        }, {
+        where: {
+            UserId: req.body.UserId
+        }
+    }
+    ).then(newinfo => {
+        console.log(newinfo)
+        res.json(newinfo)
+    })
+
+})
+
+
+
 module.exports = router;

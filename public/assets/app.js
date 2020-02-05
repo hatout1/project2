@@ -470,7 +470,7 @@ $(document).ready(function () {
             url: `/api/user/one/?UserId=${UserId}`,
         }).then(res => {
             res.map(result => {
-                console.log(result)
+                // console.log(result)
                 $("#UsernameProfileDemo1").text(result.username);
                 $("#UsernameProfileDemo2").text(result.username);
                 $("#EmailProfileDemo").text(result.email);
@@ -489,25 +489,29 @@ $(document).ready(function () {
     userPro()
     // update portfolio information
 
-    // $(document).on('click', '#infoUpdateBtn', (e) => {
-    //     e.preventDefault()
-    //     console.log('Clicked')
+    $(document).on('click', '#infoUpdateBtn', (e) => {
+        e.preventDefault()
 
-    //     const username = '';
-    //     const diet = '';
-    //     const adress = '';
-    //     const city = '';
-    //     const state = '';
-    //     const zipcode = '';
-    //     const country = '';
+        const UserId = getCookie('userIdCookie');
+        const username = $('#UpdatedUsername').val();
+        const diet = $('#UpdatedDiet').val();
+        const adress = $('#UpdatedAddress').val();
+        const city = $('#UpdatedCity').val();
+        const state = $('#UpdatedState').val();
+        const zipcode = $('#UpdatedZipcode').val();
+        const country = $('#UpdatedCountry').val();
+        const data = {
+            UserId, username, diet, adress, city, state, zipcode, country
+        }
+        console.log(data)
 
-    //     $.ajax({
-    //         method: "UPDATE",
-    //         url: "",
-    //         data: ""
-    //     }).then(res => {
-    //         res.send()
-    //     })
-    // })
+        $.ajax({
+            method: "PUT",
+            url: `api/user/update/?UserId=${UserId}`,
+            data: data
+        }).then(res => {
+            res.send()
+        })
+    })
 
 });
