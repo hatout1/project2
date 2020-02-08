@@ -25,12 +25,12 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const database = firebase.database();
 // const dbase = database;
-const admin = require('firebase-admin');
-const serviceAccount = require('./project2-e02f7-firebase-adminsdk-z4pbd-b9a5d004e1.json')
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-})
-const Fdbase = admin.firestore();
+// const admin = require('firebase-admin');
+// const serviceAccount = require('./project2-e02f7-firebase-adminsdk-z4pbd-b9a5d004e1.json')
+// admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount)
+// })
+// const Fdbase = admin.firestore();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -66,7 +66,7 @@ app.post('/SignUp', (req, res) => {
     diet = req.body.diet;
     zipcode = req.body.zipcode;
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
-        Fdbase.collection('users').doc(cred.user.uid).set({
+        database.collection('users').doc(cred.user.uid).set({
             username,
             diet,
             email,
