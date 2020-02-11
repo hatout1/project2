@@ -7,11 +7,13 @@ $(document).ready(function () {
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             expires = "; expires=" + date.toUTCString();
         }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        var cookie = name + "=" + (value || "") + expires + "; path=/";
+        window.localStorage.setItem("cookie", cookie);
     }
     function getCookie(name) {
         var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
+        var cookie = localStorage.getItem('cookie')
+        var ca = cookie ? cookie.split(';') : "";
         for (var i = 0; i < ca.length; i++) {
             var c = ca[i];
             while (c.charAt(0) == ' ') c = c.substring(1, c.length);
@@ -20,7 +22,8 @@ $(document).ready(function () {
         return null;
     }
     function eraseCookie(name) {
-        document.cookie = name + '=; Max-Age=-99999999;';
+        var cookie = name + '=; Max-Age=-99999999;';
+        window.localStorage.setItem("cookie", cookie)
     }
 
     let userStatus = '';
@@ -169,7 +172,7 @@ $(document).ready(function () {
             url: "/SignUp",
             data: data
         }).then(res => {
-            res.send();
+            // res.send();
         });
         $('#signUpModal').modal('hide');
         $("#signInBtn").text("Logout");
@@ -189,7 +192,7 @@ $(document).ready(function () {
             url: "/home",
             data: data
         }).then(res => {
-
+            console, log(res)
         });
 
         if (e) {
