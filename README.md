@@ -17,7 +17,7 @@ This is a full stack app that uses:
 
 ## Deployment
 
-This si deployed on __Heroku__:
+This app is deployed on __Heroku__:
 
 * [Home Page](https://look-u.herokuapp.com/)
 
