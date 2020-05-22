@@ -1,213 +1,204 @@
-*{
-    margin: 0px;
+* {
+  margin: 0px;
 }
 
-nav{
-    height: 5vh;
+nav {
+  /* height: 5vh;
     background-color: aquamarine;
     padding-top: 3px;
-    /* position: fixed; */
     width: 100%;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center; */
+  /* position: fixed; */
 }
 
-nav.ul{
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    
+nav.ul {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
-a{
-    display: block;
-    text-align: center;
-    /* margin-top: 5px; */
-    flex:1;
-    font-weight: bold;
-    width: 100%;
-}
-
-
-.logoImage{
-display: flex;
-/* margin-top: 15px; */
+a {
+  display: block;
+  text-align: center;
+  /* margin-top: 5px; */
+  flex: 1;
+  font-weight: bold;
+  width: 100%;
 }
 
-#logoImage1{
-flex: 1;
+.logoImage {
+  display: flex;
+  /* margin-top: 15px; */
 }
 
-#logoImage2{
-    flex: 3;
-}
-#logoImage3{
-    flex: 1;
+#logoImage1 {
+  flex: 1;
 }
 
-#apiResulteholder{
-    margin: 0px;
-
+#logoImage2 {
+  flex: 3;
 }
-.allRecipesAresbtn{
-    display: flex;
+#logoImage3 {
+  flex: 1;
 }
 
-.eachApiRecipe{
-flex: 1;
-margin-left: 5%;
+#apiResulteholder {
+  margin: 0px;
+}
+.allRecipesAresbtn {
+  display: flex;
+}
+
+.eachApiRecipe {
+  flex: 1;
+  margin-left: 5%;
 }
 
 /* Users Recipe Counteiner */
-.recipeDiv{
-    display: block;
-    margin-left: 5%;
-align-items: center;
-width:90%;
+.recipeDiv {
+  display: block;
+  margin-left: 5%;
+  align-items: center;
+  width: 90%;
 }
-.recipeCountainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start; 
-    border-color: rgba(113, 158, 226, 0.664);
-    border-style: groove;
-    border-radius: 1%;
+.recipeCountainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-color: rgba(113, 158, 226, 0.664);
+  border-style: groove;
+  border-radius: 1%;
 }
 
 .userRecipeTitle {
-/* flex: 1; */
-margin-left: 5%;
-margin-top: 10px;
-width: 20%;
-text-align: left;
-align-self: center;
+  /* flex: 1; */
+  margin-left: 5%;
+  margin-top: 10px;
+  width: 20%;
+  text-align: left;
+  align-self: center;
 }
 .userRecipeIngredients {
-    /* flex: 1; */
-    width: 25%;
-    /* text-align: left; */
-    text-align: start;
+  /* flex: 1; */
+  width: 25%;
+  /* text-align: left; */
+  text-align: start;
 }
 .ingradientApiNumberBtn {
-    text-align: left;
+  text-align: left;
 }
 .userRecipePreparation {
-    /* flex: 3; */
-    width: 55%;
-    text-align: left;
-    align-self: center;
+  /* flex: 3; */
+  width: 55%;
+  text-align: left;
+  align-self: center;
 }
 
 #linkToMoreInfo {
-    text-align: center;
-    display:block;
-    color: red;
+  text-align: center;
+  display: block;
+  color: red;
 }
-
 
 /* grocery page */
 .groceryPageCountainer {
-    display: flex;
+  display: flex;
 }
 
 .groceryListLeftDiv {
-    flex: 1;
-    text-align: center;
-    background-image: url('https://www.cookingclassy.com/wp-content/uploads/2019/06/belgian-waffles-1.jpg');
-    opacity: 0.5;
-    min-height: 900px;
+  flex: 1;
+  text-align: center;
+  background-image: url("https://www.cookingclassy.com/wp-content/uploads/2019/06/belgian-waffles-1.jpg");
+  opacity: 0.5;
+  min-height: 900px;
 }
 
 .secondDiv {
-    flex: 4;
-    text-align: center;
-    display: flex;
+  flex: 4;
+  text-align: center;
+  display: flex;
 }
 
-.IngrList{
-    flex: 2;
+.IngrList {
+  flex: 2;
 }
 
 .groceryListRightDiv {
-    flex: 1;
-    text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
 .cardBodyItem {
-display: flex;
-flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .itemToBuy {
-    flex: 5;
+  flex: 5;
 }
 
 .btnToDeleteItem {
-    flex: 1;
+  flex: 1;
 }
 
 .favoritePageContainer {
-    display: flex;
+  display: flex;
 }
 
 .favoritePageLeftDiv {
-    flex: 1;
-    background-image: url('https://www.heart.org/-/media/aha/h4gm/article-images/fruit-and-vegetables.jpg');
-    opacity: 0.5;
-    min-height: 99vh;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  flex: 1;
+  background-image: url("https://www.heart.org/-/media/aha/h4gm/article-images/fruit-and-vegetables.jpg");
+  opacity: 0.5;
+  min-height: 99vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .favoriteContainer {
-    flex: 3;
-    margin-left: 50px;
-    margin-top: 50px;
-    
-    
+  flex: 3;
+  margin-left: 50px;
+  margin-top: 50px;
 }
 
 .titleOfFavorite {
-    border-color: khaki ;
-    border-style: double;
-    border-radius: 1%;
-    margin-right: 40px;
-    margin: 5%;
+  border-color: khaki;
+  border-style: double;
+  border-radius: 1%;
+  margin-right: 40px;
+  margin: 5%;
 }
 
 #titleOfFavorite {
-    margin-left: 30px;
-    font-weight: lighter;
+  margin-left: 30px;
+  font-weight: lighter;
 }
 
 #preparationOfFav {
-    text-justify: auto;
-    /* padding-block: 10px; */
-    margin-left: 10px;
+  text-justify: auto;
+  /* padding-block: 10px; */
+  margin-left: 10px;
 }
 
-
-.RecipeTitle{
-    /* flex:1; */
-    height: 100px;
-    text-align: left;
-    vertical-align: middle;
-    width: 100%;
-/* background-color: aqua; */
+.RecipeTitle {
+  /* flex:1; */
+  height: 100px;
+  text-align: left;
+  vertical-align: middle;
+  width: 100%;
+  /* background-color: aqua; */
 }
-.RecipeTitle> p {
-    vertical-align: middle;
-    position: absolute;
-    margin-top: 2%;
+.RecipeTitle > p {
+  vertical-align: middle;
+  position: absolute;
+  margin-top: 2%;
 }
 
-#recipesEntryForm{
-    display: block;
-width: 80%;
-margin-left: 10%;
-margin-right: 10%;
-
+#recipesEntryForm {
+  display: block;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 /* #recipeTitleForm{
     flex:1;
@@ -216,77 +207,74 @@ margin-right: 10%;
 #recipeTitleDisc{
 flex: 1;
 }*/
-#recipeTitleinput{
-    display: flex;
+#recipeTitleinput {
+  display: flex;
 }
 
-#formInputQty{
-    flex:1;
-    margin-left: 1%;
+#formInputQty {
+  flex: 1;
+  margin-left: 1%;
 }
 
-#formInputMeasure{
-    flex: 1;
-    margin-left: 1%;
+#formInputMeasure {
+  flex: 1;
+  margin-left: 1%;
 }
-#formInputIngredient{
-    flex: 2;
-    margin-left: 1%;
+#formInputIngredient {
+  flex: 2;
+  margin-left: 1%;
 }
-#formInputNote{
-    flex: 3;
-    margin-left: 1%;
+#formInputNote {
+  flex: 3;
+  margin-left: 1%;
 }
-.form-row{
-    margin-bottom: 0.5%;
+.form-row {
+  margin-bottom: 0.5%;
 }
 
 .planning-Calendar-Col {
-    flex:1;
-    border-color: rgb(0, 51, 128);
-    border-style: double;
-    border-radius: 5%;
-     min-height: 300px;
+  flex: 1;
+  border-color: rgb(0, 51, 128);
+  border-style: double;
+  border-radius: 5%;
+  min-height: 300px;
 }
-#planningTable{
-    max-width: 80%;
-    margin-left: 10%;
-    text-align: center;
-    
+#planningTable {
+  max-width: 80%;
+  margin-left: 10%;
+  text-align: center;
 }
-#calendarTitle{
-    height: 60px;
-    text-align: center;
-    background-color: rgba(90, 93, 95, 0.521);
-}
-
-#thData{
-padding-top: 80px;
+#calendarTitle {
+  height: 60px;
+  text-align: center;
+  background-color: rgba(90, 93, 95, 0.521);
 }
 
-
+#thData {
+  padding-top: 80px;
+}
 
 /* portfolio page */
-.profileInfDiv{
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+.profileInfDiv {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
-.profileRow{
-    display: flex
-}
-
-.profileRow>h3 {
-    flex: 1;
-/* width: 40%; */
+.profileRow {
+  display: flex;
 }
 
-.profileRow>h5{
-    flex: 3;
-    vertical-align: bottom;
-    /* width: 60%; */
-    text-align: left;
-    color: blue;
-    /* margin-top: 5px; */
-    padding-top: 10px;
+.profileRow > h3 {
+  flex: 1;
+  /* width: 40%; */
+}
+
+.profileRow > h5 {
+  flex: 3;
+  vertical-align: bottom;
+  /* width: 60%; */
+  text-align: left;
+  color: blue;
+  /* margin-top: 5px; */
+  padding-top: 10px;
 }

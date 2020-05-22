@@ -1,23 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./GroceryList.html">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="import" href="./images/logo1.jpg">
-    <title>Look Up</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="./GroceryList.html">
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="./style/style.css"> -->
+        <link rel="import" href="./images/logo1.jpg">
+        <title>Look Up</title>
+    </head>
 
-<body>
+    <body>
 
-    <nav>
-        <ul class="nav nav-tabs" id="nav-tab" role="tablist" style="display: flex;">
-            <a href='./home.html' style="flex: 2; margin-right: 10px; margin-left: 10px;">Home</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse col-lg-12"
+                id="navbarNavAltMarkup">
+                <div style="display: flex; width: 100%;">
+                    <div class="navbar-nav" style="flex: 1; display: flex;">
+                        <a class="nav-item nav-link active" href="./home.html"
+                            style="flex: 1;">Home
+                            <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="./GroceryList.html"
+                            style="flex: 1;">Grocery
+                            List</a>
+                        <a class="nav-item nav-link" href="./Planing.html"
+                            style="flex: 1;">Planing</a>
+                        <a class="nav-item nav-link" href="./favorites.html"
+                            style="flex: 1;">Favorites</a>
+                        <a class="nav-item nav-link" href="./profile.html"
+                            style="flex: 1;">Profile</a>
+                        <a class="nav-item nav-link" type="button"
+                            data-toggle="modal" data-target="#newRecipeModal"
+                            data-whatever="@mdo" id="addNewRecipeBtnNav"
+                            style="flex: 1;">New
+                            Recipe</a>
+                        <a class="nav-item nav-link" type="button"
+                            data-toggle="modal" data-target="#signModal"
+                            data-whatever="@mdo" id="signInBtn" style="flex:
+                            1;">Sign
+                            In</a>
+                        <a class="nav-item nav-link" type="submit"
+                            data-toggle="modal" data-target="#signUpModal"
+                            data-whatever="@mdo" id="signUpBtn" style="flex:
+                            1;">Sig
+                            Up</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- <ul class="nav nav-tabs" id="nav-tab" role="tablist" style="display: flex;"> -->
+        <!-- <a href='./home.html' style="flex: 2; margin-right: 10px; margin-left: 10px;">Home</a>
             <a href='./GroceryList.html' style="flex: 2; margin-right: 10px; margin-left: 10px;">Grocery List</a>
             <a href='./Planing.html' style="flex: 2; margin-right: 10px; margin-left: 10px;">Planing</a>
             <a href='./favorites.html' style=" flex: 2; margin-right: 10px; margin-left: 10px;">Favorites</a>
@@ -27,257 +71,291 @@
             <a><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signModal"
                     data-whatever="@mdo" id="signInBtn">Sign In</button></a>
             <a><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal"
-                    data-whatever="@mdo" id="signUpBtn">Sig Up</button></a>
+                    data-whatever="@mdo" id="signUpBtn">Sig Up</button></a> -->
+        <!-- </ul> -->
 
-        </ul>
-    </nav>
 
-    <div class="logoImage">
-        <img src="./images/logo2.jpg" id="logoImage1" alt="" srcset="" style="height: 216px;">
-        <img src="./images/logo1.jpg" id="logoImage2" alt="" srcset="">
-        <img src="./images/logo3.png" id="logoImage3" alt="" srcset="" style="height: 216px;">
+        <div class="logoImage">
+            <img src="./images/logo2.jpg" id="logoImage1" alt="" srcset=""
+                style="height: 216px;">
+            <img src="./images/logo1.jpg" id="logoImage2" alt="" srcset="">
+            <img src="./images/logo3.png" id="logoImage3" alt="" srcset=""
+                style="height: 216px;">
 
-    </div>
+        </div>
 
-    <!-- Modal to sign in -->
-    <div class="modal fade" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    </button>
-                </div>
+        <!-- Modal to sign in -->
+        <div class="modal fade" id="signModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        </button>
+                    </div>
 
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="signInEmail" aria-describedby="emailHelp">
-                        </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control"
+                                    id="signInEmail"
+                                    aria-describedby="emailHelp">
+                            </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="signInPassword">
-                        </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control"
+                                    id="signInPassword">
+                            </div>
 
-                        <button type="submit" class="btn btn-primary" id="signInSubmitBtn">Submit</button>
-                    </form>
-                </div>
+                            <button type="submit" class="btn btn-primary"
+                                id="signInSubmitBtn">Submit</button>
+                        </form>
+                    </div>
 
-                <div class="modal-footer">
-                    <P>Not a member yet? please Sign up</P>
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal"
-                        data-whatever="@mdo" id="signUpBtn" style="flex: 1; margin-right: 10px; margin-left: 10px;">Sign
-                        Up</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="modal-footer">
+                        <P>Not a member yet? please Sign up</P>
+                        <button type="submit" class="btn btn-primary"
+                            data-toggle="modal" data-target="#signUpModal"
+                            data-whatever="@mdo" id="signUpBtn" style="flex: 1;
+                            margin-right: 10px; margin-left: 10px;">Sign
+                            Up</button>
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- modal to sign up -->
-    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="signUpForm">
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="validationDefault01">email</label>
-                                <input type="text" class="form-control" id="validationEmail" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="validationDefault02">Password</label>
-                                <input type="password" class="form-control" id="validationPassword" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="validationDefaultUsername">Username</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="validationUsername"
-                                        aria-describedby="inputGroupPrepend2" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="validationDefault05">Diet</label>
-                                <select class="form-control" id="validationDiet">
-                                    <option>Choose ... </option>
-                                    <option id="human" value="human">Human</option>
-                                    <option id="vegetarian" value="vegetarian">vegetarian</option>
-                                    <option id="vegan" value="vegan">vegan</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="validationDefault05">Zipcode</label>
-                                <input type="text" class="form-control" id="validationZipcode" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit" id="signUpNewBtn">Sign Up</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- place to display random recipes -->
-    <div class="container" id="apiResulteholder" style="display: flex; width: 100%;">
-
-
-        <div class="allRecipesAresbtn"></div>
-    </div>
-
-    <div class="allRecipesAres" style="margin: 25px;">
-    </div>
-
-    <div class="modal fade" id="newRecipeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Recipe</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="recipeInputFrom">
-                    <form id="recipesEntryForm">
-                        <div class="form-group" id="recipeTitleForm">
-                            <label for="exampleInputEmail1">Recipe Title</label>
-                            <input type="text" class="form-control" id="recipeTitleInput" placeholder="">
-                        </div>
-                        <div class="form-group" id="recipeTitleDisc">
-                            <label for="exampleInputPassword1">Discreption and major ingredients</label>
-                            <input type="text" class="form-control" id="recipeDiscreptionInput">
-                        </div>
-                        <div class="form-group" id="RecipeTitleInput">
-                            <label for="exampleInputPassword1">Ingredients</label>
-                            <div class="form-row newIngredients" id="igre1">
-                                <i id="icon1">*</i>
-                                <input type="text" class="form-control col-md-6 formInputNote" id="formInputNote"
-                                    placeholder="Enter the ingredient ">
-                            </div>
-                            <span class="newIngrediantSpan"></span>
-                            <label for="addNewIngrdientPlaceLabel">
-                                Add more space for more ingredients</label>
-                            <button class="addNewIngrdientPlace"> + Add</button>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Preparation</label>
-                            <textarea class="form-control" id="recipePreparation" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Attach a photo</label>
-                            <input type="file" class="form-control-file" id="recipePhoto">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <button type="submit" class="btn btn-primary" id="addNewRecipeBtn" data-toggle="modal"
-                            data-target="#newRecipeModal">Submit</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Area to add comment -->
-
-
-    <div class="modal fade" id="AddCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add comment</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="modal-body" id="commentForm">
-                    <form>
-                        <div class="commentInputFrom">
-                            <form id="commentEntryForm">
+        <!-- modal to sign up -->
+        <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="signUpForm">
+                        <form>
+                            <div class="form-row">
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Comment</label>
-                                    <textarea class="form-control" id="commentEntryInpuId" rows="3"></textarea>
+                                    <label for="validationDefault01">email</label>
+                                    <input type="text" class="form-control"
+                                        id="validationEmail" required>
                                 </div>
-                                <!-- <div class="form-group">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="validationDefault02">Password</label>
+                                    <input type="password" class="form-control"
+                                        id="validationPassword" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="validationDefaultUsername">Username</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control"
+                                            id="validationUsername"
+                                            aria-describedby="inputGroupPrepend2"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="validationDefault05">Diet</label>
+                                    <select class="form-control"
+                                        id="validationDiet">
+                                        <option>Choose ... </option>
+                                        <option id="human" value="human">Human</option>
+                                        <option id="vegetarian"
+                                            value="vegetarian">vegetarian</option>
+                                        <option id="vegan" value="vegan">vegan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="validationDefault05">Zipcode</label>
+                                    <input type="text" class="form-control"
+                                        id="validationZipcode" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit"
+                                    id="signUpNewBtn">Sign Up</button>
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- place to display random recipes -->
+        <div class="container" id="apiResulteholder" style="display: flex;
+            width: 100%;">
+
+
+            <div class="allRecipesAresbtn"></div>
+        </div>
+
+        <div class="allRecipesAres" style="margin: 25px;">
+        </div>
+
+        <div class="modal fade" id="newRecipeModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New
+                            Recipe</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="recipeInputFrom">
+                        <form id="recipesEntryForm">
+                            <div class="form-group" id="recipeTitleForm">
+                                <label for="exampleInputEmail1">Recipe Title</label>
+                                <input type="text" class="form-control"
+                                    id="recipeTitleInput" placeholder="">
+                            </div>
+                            <div class="form-group" id="recipeTitleDisc">
+                                <label for="exampleInputPassword1">Discreption
+                                    and major ingredients</label>
+                                <input type="text" class="form-control"
+                                    id="recipeDiscreptionInput">
+                            </div>
+                            <div class="form-group" id="RecipeTitleInput">
+                                <label for="exampleInputPassword1">Ingredients</label>
+                                <div class="form-row newIngredients" id="igre1">
+                                    <i id="icon1">*</i>
+                                    <input type="text" class="form-control
+                                        col-md-6 formInputNote"
+                                        id="formInputNote"
+                                        placeholder="Enter the ingredient">
+                                </div>
+                                <span class="newIngrediantSpan"></span>
+                                <label for="addNewIngrdientPlaceLabel">
+                                    Add more space for more ingredients</label>
+                                <button class="addNewIngrdientPlace"> + Add</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Preparation</label>
+                                <textarea class="form-control"
+                                    id="recipePreparation" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Attach a
+                                    photo</label>
+                                <input type="file" class="form-control-file"
+                                    id="recipePhoto">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <button type="submit" class="btn btn-primary"
+                                id="addNewRecipeBtn" data-toggle="modal"
+                                data-target="#newRecipeModal">Submit</button>
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Close</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Area to add comment -->
+
+
+        <div class="modal fade" id="AddCommentModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add
+                            comment</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="commentForm">
+                        <form>
+                            <div class="commentInputFrom">
+                                <form id="commentEntryForm">
+                                    <div class="form-group">
+                                        <label
+                                            for="exampleFormControlTextarea1">Comment</label>
+                                        <textarea class="form-control"
+                                            id="commentEntryInpuId" rows="3"></textarea>
+                                    </div>
+                                    <!-- <div class="form-group">
                                     <label for="exampleFormControlFile1">Attach a photo</label>
                                     <input type="file" class="form-control-file" id="recipePhoto">
                                 </div> -->
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="addNewCommentBtn" data-toggle="modal"
-                                data-target="#AddCommentModal">Submit</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </form>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary"
+                                    id="addNewCommentBtn" data-toggle="modal"
+                                    data-target="#AddCommentModal">Submit</button>
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- <div class="commentInputFrom">
+        <!-- <div class="commentInputFrom">
         <form id="commentEntryForm">
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Comment</label>
                 <textarea class="form-control" id="commentEntryInpuId" rows="3"></textarea>
             </div> -->
-    <!-- <div class="form-group">
+        <!-- <div class="form-group">
                 <label for="exampleFormControlFile1">Attach a photo</label>
                 <input type="file" class="form-control-file" id="recipePhoto">
             </div> -->
-    <!-- <button type="submit" class="btn btn-primary" id="addNewCommentBtn">Submit</button>
+        <!-- <button type="submit" class="btn btn-primary" id="addNewCommentBtn">Submit</button>
         </form>
     </div> -->
-
-
-
-
-
-
-
-
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="./assets/app.js"></script>
-    <!-- <script src="./assets/list.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-</body>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
+        <script src="./assets/app.js"></script>
+        <!-- <script src="./assets/list.js"></script> -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    </body>
 
 </html>
