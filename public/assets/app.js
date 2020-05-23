@@ -52,16 +52,16 @@ $(document).ready(function () {
     let recipesDisplay = () => {
       for (r = 0; r < recipeList.length; r++) {
         $("#apiResulteholder").append(`
-                <div cLass="eachApiRecipe" id="recipeData${r}"style="flex:1;">
+                <div cLass="eachApiRecipe" id="recipeData${r}" style="flex:1; display: flex: flex-direction: column">
                     <div class="RecipeTitle addFavoriteToLike" id="addFavoritetitle">
                         <p>
                             ${res.hits[r].recipe.label}
                         </p>
                     </div>
                     <div class="imagePlace addFavoriteToLike" id="addFavoriteimage">
-                        <img src="${res.hits[r].recipe.image}" alt="" style="flex:1">
+                        <img src="${res.hits[r].recipe.image}" alt="" >
                     </div>
-                        <button class="addFavoriteBtnClass addFavoriteToLike" id="addFavoriteBtn" data-title ="${res.hits[r].recipe.label}" data-image="${res.hits[r].recipe.image}" data-info="${res.hits[r].recipe.url}" style="margin-bottom:10px;">Like it</button>
+                        <button class="addFavoriteBtnClass addFavoriteToLike" id="addFavoriteBtn" data-title ="${res.hits[r].recipe.label}" data-image="${res.hits[r].recipe.image}" data-info="${res.hits[r].recipe.url}">Like it</button>
                     <div class="apiIngredientslistDisplay">
                     <p>Click for ingredients</p>
                     </div>
@@ -283,14 +283,14 @@ $(document).ready(function () {
       method: "GET",
       url: "/api/recipe",
     }).then((res) => {
-      let newRecipe = "<div></div>";
+      let newRecipe = `<div class="localRecipes" style="display:none"></div>`;
       res.map((recipe, i) => {
         let recipeIngredients = recipe.ingredients.split("&");
         // console.log(recipeIngredients);
         newRecipe =
           newRecipe +
           `
-                <div class="recipeDiv">
+                <div class="recipeDiv" style="flex:1; min-width: 350px; max-width:450px;">
                      <div class="recipeCountainer">
                          <div class="userRecipeTitle">
                             <h2 class="card-text">
@@ -332,9 +332,9 @@ $(document).ready(function () {
                         </div>
                     </div>
                         <div class="text-right pt-2 mb-5">
-                        <button id="addNewCommentBtn" data-Ingred="addNewCommentBtn" data-toggle="modal" data-target="#AddCommentModal"
-                        data-whatever="@mdo" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}" class="btn btn-secondary btn-lg btn-radius">Add Comment</button>
-                         <button id="favoriteRecipeBtn" data-Ingred="${recipeIngredients}" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}" class="btn btn-success btn-lg btn-radius"">Add to favorite</button>
+                        <i class="fa fa-comment" id="addNewCommentBtn" data-Ingred="addNewCommentBtn" data-toggle="modal" data-target="#AddCommentModal"
+                        data-whatever="@mdo" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}">Add Comment</i><br>
+                        <i class="fa fa-heart" id="favoriteRecipeBtn" data-Ingred="${recipeIngredients}" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}">Add to favorite</i>
                         </div>
                 </div>`;
       });
