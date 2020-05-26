@@ -61,8 +61,11 @@ $(document).ready(function () {
                     <div class="imagePlace addFavoriteToLike" id="addFavoriteimage">
                         <img src="${res.hits[r].recipe.image}" alt="" >
                     </div>
-                        <button class="addFavoriteBtnClass addFavoriteToLike" id="addFavoriteBtn" data-title ="${res.hits[r].recipe.label}" data-image="${res.hits[r].recipe.image}" data-info="${res.hits[r].recipe.url}">Like it</button>
-                    <div class="apiIngredientslistDisplay">
+                    
+                    
+                        <i class="fa fa-heart addFavoriteBtnClass addFavoriteToLike" id="addFavoriteBtn" data-title ="${res.hits[r].recipe.label}" data-image="${res.hits[r].recipe.image}" data-info="${res.hits[r].recipe.url}"> Like it</i>
+                       
+                        <div class="apiIngredientslistDisplay">
                     <p>Click for ingredients</p>
                     </div>
                     <div class="panel" style="display:none;">
@@ -290,16 +293,16 @@ $(document).ready(function () {
         newRecipe =
           newRecipe +
           `
-                <div class="recipeDiv" style="flex:1; min-width: 350px; max-width:450px;">
+                <div class="recipeDiv" style="flex:1; min-width: 350px; max-width:450px; margin: 1%; padding:1%; border-style: solid;">
                      <div class="recipeCountainer">
                          <div class="userRecipeTitle">
                             <h2 class="card-text">
                                 ${recipe.title}
                             </h2>
-                            <P>Published on: <br>${
+                            <P style="text-align: right; font-size: 12px;">Published on: ${
                               recipe.createdAt
                                 .split("T")
-                                .join(" <br>at ")
+                                .join(" at ")
                                 .split(".")[0]
                             }</P>
                         </div>
@@ -333,8 +336,8 @@ $(document).ready(function () {
                     </div>
                         <div class="text-right pt-2 mb-5">
                         <i class="fa fa-comment" id="addNewCommentBtn" data-Ingred="addNewCommentBtn" data-toggle="modal" data-target="#AddCommentModal"
-                        data-whatever="@mdo" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}">Add Comment</i><br>
-                        <i class="fa fa-heart" id="favoriteRecipeBtn" data-Ingred="${recipeIngredients}" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}">Add to favorite</i>
+                        data-whatever="@mdo" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}">  Add Comment</i><br>
+                        <i class="fa fa-heart" id="favoriteRecipeBtn" data-Ingred="${recipeIngredients}" data-id="${recipe.recipeId}" data-preparation="${recipe.preparation}" data-title="${recipe.title}">  Add to favorite</i>
                         </div>
                 </div>`;
       });
