@@ -91,3 +91,53 @@
 }
 
 /* <!-- Area to add comment --> */
+
+/* ***************-------- Planning styling --------**************** */
+
+.planningPage {
+  height: 95vh;
+  /* padding: 2px 16px; */
+  background-image: url(" https://www.ciapr.org/caguas/files/2019/04/067798-yellow-road-sign-icon-people-things-people-worker.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.planningTable {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-shadow: 2px 2px 4px 4px rgba(158, 157, 157, 0.828);
+}
+
+.calendarTitle {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.calendarTitleSpam {
+  flex: 1;
+}
+.dayRowTitle {
+  flex: 1;
+}
+
+.mealRow {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-shadow: 2px 2px 4px 4px rgba(158, 157, 157, 0.828);
+}
+
+.dayMealRowTitle {
+  flex: 1;
+  box-shadow: 2px 2px 4px 4px rgba(158, 157, 157, 0.828);
+}
+
+.dayMealRow {
+  flex: 1;
+  box-shadow: 2px 2px 4px 4px rgba(158, 157, 157, 0.828);
+}
